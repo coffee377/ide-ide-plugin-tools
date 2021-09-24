@@ -1,0 +1,10 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <lang.syntaxHighlighter language="LESS" order="first"
+                                implementationClass="com.voc.ide.plugin.style.less.LessSyntaxHighlighter"/>
+        <lang.formatter language="LESS" order="first"
+                        implementationClass="com.voc.ide.plugin.style.less.LessFormatter"/>
+        <lang.inspectionSuppressor language="LESS"
+                                   implementationClass="com.voc.ide.plugin.style.less.LessInspection"/>
+    </extensions>
+</idea-plugin>

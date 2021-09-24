@@ -1,0 +1,13 @@
+.gradle
+.idea
+lib
+out
+test.css
+build
+
+src/main/gen
+src/main/java/org
+src/main/resources/icons/jar-gray.png
+
+src/test/java/org
+src/test/testData

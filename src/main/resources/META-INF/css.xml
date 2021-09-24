@@ -1,0 +1,15 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij.css">
+        <!--        <cssInspectionFilter implementationClass=""/>-->
+        <!--        <supportedFileTypesProvider implementation="extensions"/>-->
+    </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <lang.syntaxHighlighter language="CSS" order="first"
+                                implementationClass="com.voc.ide.plugin.style.css.CssSyntaxHighlighter"/>
+        <lang.formatter language="CSS" order="first"
+                        implementationClass="com.voc.ide.plugin.style.css.CssFormatter"/>
+        <lang.inspectionSuppressor language="CSS"
+                                   implementationClass="com.voc.ide.plugin.style.css.CssInspection"/>
+
+    </extensions>
+</idea-plugin>

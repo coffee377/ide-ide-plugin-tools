@@ -1,0 +1,17 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <lang.syntaxHighlighter language="SASS" order="first"
+                                implementationClass="com.voc.ide.plugin.style.sass.SassSyntaxHighlighter"/>
+        <lang.formatter language="SASS" order="first"
+                        implementationClass="com.voc.ide.plugin.style.sass.SassFormatter"/>
+        <lang.inspectionSuppressor language="SASS"
+                                   implementationClass="com.voc.ide.plugin.style.sass.SassInspection"/>
+
+        <lang.syntaxHighlighter language="SCSS" order="first"
+                                implementationClass="com.voc.ide.plugin.style.scss.ScssSyntaxHighlighter"/>
+        <lang.formatter language="SCSS" order="first"
+                        implementationClass="com.voc.ide.plugin.style.scss.ScssFormatter"/>
+        <lang.inspectionSuppressor language="SCSS"
+                                   implementationClass="com.voc.ide.plugin.style.scss.ScssInspection"/>
+    </extensions>
+</idea-plugin>

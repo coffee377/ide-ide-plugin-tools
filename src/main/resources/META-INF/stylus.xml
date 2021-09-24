@@ -1,0 +1,13 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <lang.syntaxHighlighter language="Stylus" order="first"
+                                implementationClass="com.voc.ide.plugin.style.stylus.StylusHighlighter"/>
+        <lang.formatter language="Stylus" order="first"
+                        implementationClass="com.voc.ide.plugin.style.stylus.StylusFormatter"/>
+<!--        <lang.inspectionSuppressor language="Stylus"-->
+<!--                                   implementationClass="com.voc.ide.plugin.style.sass.SassInspection"/>-->
+    </extensions>
+    <extensions defaultExtensionNs="com.intellij.css">
+<!--        <cssInspectionFilter language="Stylus" implementationClass="com.voc.ide.plugin.style.stylus.StylusInspection"/>-->
+    </extensions>
+</idea-plugin>

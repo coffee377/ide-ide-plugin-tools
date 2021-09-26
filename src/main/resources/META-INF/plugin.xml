@@ -1,25 +1,12 @@
 <idea-plugin xmlns:xi="http://www.w3.org/2001/XInclude">
     <id>com.voc.ide.plugin</id>
     <name>Develop Tools</name>
-    <vendor email="coffee377@dingtalk.com" url="https://tvoc.site">tvoc.site</vendor>
+    <vendor email="coffee377@dingtalk.com" url="https://tvoc.site">coffee377</vendor>
+    <description>(automatically filled during build from description.html)</description>
+    <change-notes>(automatically filled during build from CHANGELOG.adoc)</change-notes>
 
-    <description><![CDATA[
-      Demonstrates how to add custom language support to an IntelliJ Platform-based IDE. <br>Defines a new language,
-      <i>Simple language</i> with support for syntax highlighting, annotations, code completion, and other features.
-      <br>
-      See the
-      <a href="https://plugins.jetbrains.com/docs/intellij/custom-language-support-tutorial.html">Custom
-      Language Tutorial</a> for more information.
-    ]]></description>
-    <!--    <xi:include href="intents.xml" xpointer="xpointer(/idea-plugin/*)"/>-->
-    <!--    <xi:include href="wxml.xml" xpointer="xpointer(/idea-plugin/*)"/>-->
-    <!--    <xi:include href="wxss.xml" xpointer="xpointer(/idea-plugin/*)"/>-->
-    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
-         on how to target different products -->
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
-    <!--    <depends>com.intellij.java</depends>-->
-    <!--    <depends>com.intellij.modules.lang</depends>-->
-    <!--    <depends>com.intellij.modules.xml</depends>-->
     <depends optional="true">JavaScript</depends>
     <depends optional="true" config-file="css.xml">com.intellij.css</depends>
     <depends optional="true" config-file="less.xml">org.jetbrains.plugins.less</depends>
@@ -27,44 +14,7 @@
     <depends optional="true" config-file="stylus.xml">org.jetbrains.plugins.stylus</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-<!--        <lang.syntaxHighlighter language="CSS" order="first"-->
-<!--                                implementationClass="com.voc.ide.plugin.style.css.CssSyntaxHighlighter"/>-->
-<!--        <lang.formatter language="CSS" order="first"-->
-<!--                        implementationClass="com.voc.ide.plugin.style.css.CssFormattingModelPlusBuilder"/>-->
-<!--        &lt;!&ndash; 检查抑制器 &ndash;&gt;-->
-<!--        <lang.inspectionSuppressor language="CSS"-->
-<!--                                   implementationClass="com.voc.ide.plugin.style.css.CssInspectionPlusSuppressor"/>-->
-<!--        <fileType name="Simple File" implementationClass="org.intellij.sdk.language.SimpleFileType"-->
-<!--                  fieldName="INSTANCE" language="Simple" extensions="simple;tpl"/>-->
-        <!-- 样式文件格式化扩展，支持小程序像素单位(rpx/upx)-->
-        <!--        <lang.formatter language="Simple"-->
-        <!--                        implementationClass="org.intellij.sdk.language.SimpleFormattingModelBuilder"/>-->
 
-        <!--        <lang.parserDefinition language="Simple"-->
-        <!--                               implementationClass="org.intellij.sdk.language.SimpleParserDefinition"/>-->
-        <!--        <lang.syntaxHighlighterFactory language="Simple"-->
-        <!--                                       implementationClass="org.intellij.sdk.language.SimpleSyntaxHighlighterFactory"/>-->
-        <!--        <colorSettingsPage implementation="org.intellij.sdk.language.SimpleColorSettingsPage"/>-->
-        <!--        <annotator language="JAVA" implementationClass="org.intellij.sdk.language.SimpleAnnotator"/>-->
-        <!--        <codeInsight.lineMarkerProvider language="JAVA"-->
-        <!--                                        implementationClass="org.intellij.sdk.language.SimpleLineMarkerProvider"/>-->
-        <!--        <completion.contributor language="Simple"-->
-        <!--                                implementationClass="org.intellij.sdk.language.SimpleCompletionContributor"/>-->
-        <!--        <psi.referenceContributor language="JAVA"-->
-        <!--                                  implementation="org.intellij.sdk.language.SimpleReferenceContributor"/>-->
-        <!--        <lang.refactoringSupport language="Simple"-->
-        <!--                                 implementationClass="org.intellij.sdk.language.SimpleRefactoringSupportProvider"/>-->
-        <!--        <lang.findUsagesProvider language="Simple"-->
-        <!--                                 implementationClass="org.intellij.sdk.language.SimpleFindUsagesProvider"/>-->
-        <!--        <lang.foldingBuilder language="JAVA" implementationClass="org.intellij.sdk.language.SimpleFoldingBuilder"/>-->
-        <!--        <gotoSymbolContributor implementation="org.intellij.sdk.language.SimpleChooseByNameContributor"/>-->
-        <!--        <lang.psiStructureViewFactory language="Simple"-->
-        <!--                                      implementationClass="org.intellij.sdk.language.SimpleStructureViewFactory"/>-->
-        <!--        <lang.formatter language="Simple" implementationClass="org.intellij.sdk.language.SimpleFormattingModelBuilder"/>-->
-        <!--        <codeStyleSettingsProvider implementation="org.intellij.sdk.language.SimpleCodeStyleSettingsProvider"/>-->
-        <!--        <langCodeStyleSettingsProvider implementation="org.intellij.sdk.language.SimpleLanguageCodeStyleSettingsProvider"/>-->
-        <!--        <lang.commenter language="Simple" implementationClass="org.intellij.sdk.language.SimpleCommenter"/>-->
-        <!--        <lang.documentationProvider language="Simple" implementationClass="org.intellij.sdk.language.SimpleDocumentationProvider"/>-->
     </extensions>
 
     <actions>

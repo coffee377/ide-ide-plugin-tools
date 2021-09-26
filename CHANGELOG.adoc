@@ -1,0 +1,12 @@
+= Develop Tools Plugin Changelog
+
+== About
+
+This document provides a high-level view of the changes introduced by release.
+
+[[releasenotes]]
+== Release notes
+
+=== 0.0.1
+
+- 支持小程序像素单位(rpx 或 upx)

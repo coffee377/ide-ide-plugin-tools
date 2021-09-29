@@ -11,3 +11,6 @@ src/main/resources/icons/jar-gray.png
 
 src/test/java/org
 src/test/testData
+gradle.properties
+chain.crt
+private.pem

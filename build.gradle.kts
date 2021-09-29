@@ -34,11 +34,11 @@ val iu202121 = "D:\\SoftWare\\DeveloperKits\\JetBrains\\apps\\IDEA-U\\ch-0\\212.
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
 //    version.set("2021.2.1")
-    pluginName.set("devtools-intellij-plugin")
     localPath.set(iu202121)
+    pluginName.set("devtools-intellij-plugin")
     updateSinceUntilBuild.set(false)
     downloadSources.set(false)
-    plugins.set(arrayListOf("java", "JavaScript", "less", "sass", "stylus")) //
+    plugins.set(arrayListOf("java", "JavaScript", "less", "sass", "stylus"))
 }
 
 asciidoctorj {
@@ -86,12 +86,13 @@ tasks {
 
     patchPluginXml {
         setDependsOn(listOf(asciidoctor))
-        pluginId.set(group)
+        sinceBuild.set("212.2.1")
+        pluginId.set(project.group.toString())
         val description = file("src/main/resources/META-INF/description.html").readText(charset("UTF-8"))
         pluginDescription.set(description)
         val changelogFile = file("build/docs/CHANGELOG.html")
         if (changelogFile.exists()) {
-            val changelog =  org.jsoup.Jsoup.parse(changelogFile.readText(charset("UTF-8")))
+            val changelog = org.jsoup.Jsoup.parse(changelogFile.readText(charset("UTF-8")))
                 .select("#releasenotes").first()
                 ?.nextElementSibling()?.children()?.stream()?.map { e ->
                     e.html()
@@ -111,8 +112,32 @@ tasks {
 
     }
 
+    signPlugin {
+        val chain = file("chain.crt")
+        val privateKey = file("private.pem")
+        if (chain.exists()) {
+            certificateChain.set(chain.readText(charset("UTF-8")).trimIndent())
+        }
+        if (privateKey.exists()) {
+            certificateChain.set(privateKey.readText(charset("UTF-8")).trimIndent())
+        }
+        password.set(ext.get("PRIVATE_KEY_PASSWORD").toString().trimIndent())
+    }
+
+    publishPlugin {
+        token.set(ext.get("PUBLISH_TOKEN").toString().trimIndent())
+    }
+
     runPluginVerifier {
-        localPaths.add(file(iu202121))
+//        failureLevel.set(
+//            listOf(
+//                org.jetbrains.intellij.tasks.RunPluginVerifierTask.FailureLevel.INVALID_PLUGIN,
+//                org.jetbrains.intellij.tasks.RunPluginVerifierTask.FailureLevel.COMPATIBILITY_PROBLEMS,
+//                org.jetbrains.intellij.tasks.RunPluginVerifierTask.FailureLevel.NOT_DYNAMIC
+//            )
+//        )
+        ideVersions.set(listOf("2021.2.1"))
+//        localPaths.add(file(iu202121))
     }
 
     buildSearchableOptions {

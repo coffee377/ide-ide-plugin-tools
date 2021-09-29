@@ -1,6 +1,6 @@
 <idea-plugin xmlns:xi="http://www.w3.org/2001/XInclude">
     <id>com.voc.ide.plugin</id>
-    <name>Develop Tools</name>
+    <name>DevTools</name>
     <vendor email="coffee377@dingtalk.com" url="https://tvoc.site">coffee377</vendor>
     <description>(automatically filled during build from description.html)</description>
     <change-notes>(automatically filled during build from CHANGELOG.adoc)</change-notes>

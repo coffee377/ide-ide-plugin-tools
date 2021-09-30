@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.voc.ide.plugin.tools"
-version = "0.0.1"
+version = "0.0.3"
 
 sourceSets {
     main {
@@ -24,7 +24,8 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jsoup:jsoup:1.14.2")
+    compileOnly("org.jsoup:jsoup:1.14.2")
+    compileOnly(files("lib/idea-php-dotenv-plugin-2021.3.0.212.jar"))
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.0")
 }
@@ -42,17 +43,9 @@ intellij {
 }
 
 asciidoctorj {
-//    sou
 
 }
 
-//asciidoctor {
-//    sourceDir file('.')
-//    sources {
-//        include 'CHANGELOG.adoc'
-//    }
-//    outputDir file('build/docs')
-//}
 
 tasks {
     /* 清理项目额外删除 out 目录 */

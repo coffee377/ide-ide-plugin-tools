@@ -14,7 +14,9 @@
     <depends optional="true" config-file="stylus.xml">org.jetbrains.plugins.stylus</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-
+        <!-- 环境变量相关扩展 -->
+        <fileType name="Env File" language="Env" extensions="env" fileNames=".env" patterns=".env.*"
+                  implementationClass="com.voc.ide.plugin.env.EnvFileType"/>
     </extensions>
 
     <actions>

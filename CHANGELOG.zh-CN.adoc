@@ -11,8 +11,8 @@ This document provides a high-level view of the changes introduced by release.
 == Release notes
 
 === 0.0.3
-- Update the plugin description and comments to English
-- Support for Environment file(.env, \*.env, .env.*)
+- 更新插件描述和注释为英语
+- 支持环境变量文件(.env, \*.env, .env*)
 
 === 0.0.1
-- support rpx or upx pixel unit for Mini Program
+- 支持小程序像素单位(rpx 或 upx)

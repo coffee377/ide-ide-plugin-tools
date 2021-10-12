@@ -1,0 +1,35 @@
+= DevTools Plugin
+
+[[introduce]]
+== Introduction
+A collection of common development tools for IntelliJ products.
+
+files in your project. It supports the following IDEs:
+
+- Android Studio
+- AppCode
+- CLion
+- GoLand
+- IntelliJ IDEA
+- PhpStorm
+- PyCharm
+- RubyMine
+- WebStorm
+- DataGrip
+
+[[features]]
+== Features
+
+[[install]]
+== Installation
+
+* Using IDE built-in plugin system:
+
+- Preferences > Plugins > Browse repositories... > Search for "DevTools" > Install Plugin
+
+* Manually:
+
+- Download the latest release and install it manually using Preferences > Plugins > Install plugin from disk...
+
+//[[usage]]
+//== Usage

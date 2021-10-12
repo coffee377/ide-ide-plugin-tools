@@ -1,26 +1,57 @@
-<idea-plugin xmlns:xi="http://www.w3.org/2001/XInclude">
-    <id>com.voc.ide.plugin</id>
+<idea-plugin>
+    <id>com.voc.ide.plugin.tools</id>
     <name>DevTools</name>
-    <vendor email="coffee377@dingtalk.com" url="https://tvoc.site">coffee377</vendor>
+    <vendor email="coffee377@dingtalk.com">coffee377</vendor>
     <description>(automatically filled during build from description.html)</description>
     <change-notes>(automatically filled during build from CHANGELOG.adoc)</change-notes>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
-    <depends optional="true">JavaScript</depends>
+    <depends optional="true" config-file="java.xml">com.intellij.modules.java</depends>
+    <depends optional="true" config-file="js.xml">JavaScript</depends>
     <depends optional="true" config-file="css.xml">com.intellij.css</depends>
     <depends optional="true" config-file="less.xml">org.jetbrains.plugins.less</depends>
     <depends optional="true" config-file="sass.xml">org.jetbrains.plugins.sass</depends>
     <depends optional="true" config-file="stylus.xml">org.jetbrains.plugins.stylus</depends>
 
+    <extensionPoints>
+        <extensionPoint interface="com.voc.ide.plugin.env.api.EnvironmentVariablesProvider"
+                        name="environmentVariablesProvider"/>
+        <extensionPoint interface="com.voc.ide.plugin.env.api.EnvironmentVariablesUsagesProvider"
+                        name="environmentVariablesUsagesProvider"/>
+    </extensionPoints>
+
     <extensions defaultExtensionNs="com.intellij">
         <!-- 环境变量相关扩展 -->
         <fileType name="Env File" language="Env" extensions="env" fileNames=".env" patterns=".env.*"
+                  fieldName="INSTANCE"
                   implementationClass="com.voc.ide.plugin.env.EnvFileType"/>
+
+        <!-- doT 模板文件扩展 -->
+        <fileType name="tpl" language="TPL" fieldName="INSTANCE" extensions="tpl;dot"
+                  implementationClass="com.voc.ide.plugin.tpl.TplFileType"/>
+<!--        <spellchecker.support language="LESS" implementationClass="org.jetbrains.plugins.less.spellchecking.LessSpellcheckingStrategy"/>-->
+<!--        <spellchecker.bundledDictionaryProvider implementation="org.jetbrains.plugins.less.spellchecking.LessBundledDictionaryProvider"/>-->
+        <!-- 自定义数据字典 -->
+<!--        <spellchecker.dictionary.customDictionaryProvider implementation="com.voc.ide.dict.VocDictionaryProvider"/>-->
+<!--        <spellchecker.dictionary.runtimeDictionaryProvider implementation="com.voc.ide.dict.VocDictionaryProvider"/>-->
+<!--        <internalFileTemplate name="Tpl File"/>-->
     </extensions>
+
+<!--    <extensions defaultExtensionNs="com.voc.ide.plugin.tools">-->
+<!--        <environmentVariablesProvider implementation="com.voc.ide.plugin.env.EnvVariablesProvider"/>-->
+<!--    </extensions>-->
 
     <actions>
         <!-- Add your actions here -->
+<!--        <group id="DEMONewFileGroupAction" class="com.voc.ide.actions.NewFileGroupAction" text="1"-->
+<!--               description="2">-->
+<!--            <add-to-group group-id="NewGroup" anchor="first"/>-->
+<!--        </group>-->
+
+        <action id="EnvFileAction" class="com.voc.ide.actions.EnvFileAction">
+            <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>
+        </action>
     </actions>
 
 </idea-plugin>

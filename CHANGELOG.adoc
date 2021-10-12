@@ -4,9 +4,6 @@
 
 This document provides a high-level view of the changes introduced by release.
 
-[[features]]
-== Features
-
 [[releasenotes]]
 == Release notes
 

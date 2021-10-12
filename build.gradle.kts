@@ -1,15 +1,15 @@
 import java.util.stream.Collectors
 
 plugins {
-    id("org.jetbrains.intellij") version "1.1.6"
     `java-library`
-//    `kotlin-dsl`
-//    id("org.jetbrains.kotlin.jvm") version "1.5.10"
+    id("org.jetbrains.intellij") version "1.1.6"
+    id("org.jetbrains.kotlin.jvm") version "1.5.10"
+    id("org.jetbrains.changelog") version "1.3.0"
     id("org.asciidoctor.jvm.convert") version "3.3.2"
 }
 
 group = "com.voc.ide.plugin.tools"
-version = "0.0.3"
+version = "0.0.4"
 
 sourceSets {
     main {
@@ -24,13 +24,13 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.jsoup:jsoup:1.14.2")
+//    compileOnly("org.jsoup:jsoup:1.14.3")
     compileOnly(files("lib/idea-php-dotenv-plugin-2021.3.0.212.jar"))
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 }
 
-val iu202121 = "D:\\SoftWare\\DeveloperKits\\JetBrains\\apps\\IDEA-U\\ch-0\\212.5080.55"
+var iu202121 = "D:\\SoftWare\\DeveloperKits\\JetBrains\\apps\\IDEA-U\\ch-0\\212.5080.55"
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
@@ -46,11 +46,14 @@ asciidoctorj {
 
 }
 
-
 tasks {
     /* 清理项目额外删除 out 目录 */
     clean {
         delete("out")
+    }
+
+    jar {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     }
 
     /* adoc 文档生成 */
@@ -60,29 +63,37 @@ tasks {
         }
         setSourceDir(file("."))
         sources {
-            include("CHANGELOG.adoc")
+            include("*.adoc")
         }
         setOutputDir(file("build/docs"))
     }
 
-//    withType<JavaCompile> {
-//        sourceCompatibility = "11"
-//        targetCompatibility = "11"
-//    }
+    withType<JavaCompile> {
+        sourceCompatibility = "11"
+        targetCompatibility = "11"
+    }
 
-//    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-//        kotlinOptions {
-//            jvmTarget = "11"
-//            freeCompilerArgs = freeCompilerArgs + "-Xjvm-default=enable"
-//        }
-//    }
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "11"
+            freeCompilerArgs = freeCompilerArgs + "-Xjvm-default=enable"
+        }
+    }
 
     patchPluginXml {
         setDependsOn(listOf(asciidoctor))
         sinceBuild.set("212.2.1")
         pluginId.set(project.group.toString())
-        val description = file("src/main/resources/META-INF/description.html").readText(charset("UTF-8"))
-        pluginDescription.set(description)
+
+        val descriptionFile = file("build/docs/README.html")
+        if (descriptionFile.exists()) {
+            val description = org.jsoup.Jsoup.parse(descriptionFile.readText(charset("UTF-8")))
+                .select("#content").first()?.children()?.stream()?.map { e -> e.html() }?.collect(
+                    Collectors.joining("")
+                )
+            pluginDescription.set(description)
+        }
+
         val changelogFile = file("build/docs/CHANGELOG.html")
         if (changelogFile.exists()) {
             val changelog = org.jsoup.Jsoup.parse(changelogFile.readText(charset("UTF-8")))
@@ -92,14 +103,14 @@ tasks {
                         // issues id
                         .replace(
                             Regex("#([0-9]+)"),
-                            "<a href=\"https://github.com/asciidoctor/asciidoctor-intellij-plugin/issues/\$1\">#\$1</a>"
+                            "<a href=\"https://github.com/coffee377/ide-plugin-tools/issues/\$1\">#\$1</a>"
                         )
                         // regex for GitHub usernames from https://github.com/shinnn/github-username-regex
                         .replace(
                             Regex("(?i)@([a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38})"),
                             "<a href=\"https://github.com/\$1\">@\$1</a>"
                         )
-                }?.collect(Collectors.joining("/n"))
+                }?.collect(Collectors.joining(""))
             changeNotes.set(changelog)
         }
 
@@ -122,21 +133,14 @@ tasks {
     }
 
     runPluginVerifier {
-//        failureLevel.set(
-//            listOf(
-//                org.jetbrains.intellij.tasks.RunPluginVerifierTask.FailureLevel.INVALID_PLUGIN,
-//                org.jetbrains.intellij.tasks.RunPluginVerifierTask.FailureLevel.COMPATIBILITY_PROBLEMS,
-//                org.jetbrains.intellij.tasks.RunPluginVerifierTask.FailureLevel.NOT_DYNAMIC
-//            )
-//        )
         ideVersions.set(listOf("2021.2.1"))
-//        localPaths.add(file(iu202121))
     }
 
     buildSearchableOptions {
         enabled.and(false)
     }
 }
+
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }

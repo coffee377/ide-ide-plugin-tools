@@ -1,4 +1,4 @@
-package com.voc.ide;
+package com.voc.ide.plugin;
 
 import com.intellij.DynamicBundle;
 import org.jetbrains.annotations.PropertyKey;

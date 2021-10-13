@@ -28,27 +28,18 @@
                   implementationClass="com.voc.ide.plugin.env.EnvFileType"/>
 
         <!-- doT 模板文件扩展 -->
-        <fileType name="tpl" language="TPL" fieldName="INSTANCE" extensions="tpl;dot"
+        <fileType name="Tpl File" language="TPL" fieldName="INSTANCE" extensions="tpl;dot"
                   implementationClass="com.voc.ide.plugin.tpl.TplFileType"/>
-<!--        <spellchecker.support language="LESS" implementationClass="org.jetbrains.plugins.less.spellchecking.LessSpellcheckingStrategy"/>-->
-<!--        <spellchecker.bundledDictionaryProvider implementation="org.jetbrains.plugins.less.spellchecking.LessBundledDictionaryProvider"/>-->
+        <!--        <spellchecker.support language="LESS" implementationClass="org.jetbrains.plugins.less.spellchecking.LessSpellcheckingStrategy"/>-->
+        <!--        <spellchecker.bundledDictionaryProvider implementation="org.jetbrains.plugins.less.spellchecking.LessBundledDictionaryProvider"/>-->
         <!-- 自定义数据字典 -->
-<!--        <spellchecker.dictionary.customDictionaryProvider implementation="com.voc.ide.dict.VocDictionaryProvider"/>-->
-<!--        <spellchecker.dictionary.runtimeDictionaryProvider implementation="com.voc.ide.dict.VocDictionaryProvider"/>-->
-<!--        <internalFileTemplate name="Tpl File"/>-->
+        <!--        <spellchecker.dictionary.customDictionaryProvider implementation="com.voc.ide.dict.VocDictionaryProvider"/>-->
+        <!--        <spellchecker.dictionary.runtimeDictionaryProvider implementation="com.voc.ide.dict.VocDictionaryProvider"/>-->
+        <!--        <internalFileTemplate name="Tpl File"/>-->
     </extensions>
 
-<!--    <extensions defaultExtensionNs="com.voc.ide.plugin.tools">-->
-<!--        <environmentVariablesProvider implementation="com.voc.ide.plugin.env.EnvVariablesProvider"/>-->
-<!--    </extensions>-->
-
     <actions>
-        <!-- Add your actions here -->
-<!--        <group id="DEMONewFileGroupAction" class="com.voc.ide.actions.NewFileGroupAction" text="1"-->
-<!--               description="2">-->
-<!--            <add-to-group group-id="NewGroup" anchor="first"/>-->
-<!--        </group>-->
-
+        <!-- 新建环境变量文件 -->
         <action id="EnvFileAction" class="com.voc.ide.actions.EnvFileAction">
             <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>
         </action>

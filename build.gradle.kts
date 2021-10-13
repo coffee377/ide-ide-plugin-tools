@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.voc.ide.plugin.tools"
-version = "0.0.4"
+version = "0.0.5-alpha.0"
 
 sourceSets {
     main {
@@ -130,6 +130,12 @@ tasks {
 
     publishPlugin {
         token.set(ext.get("PUBLISH_TOKEN").toString().trimIndent())
+        // pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
+        // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
+        // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
+        val channel = project.version.toString().split("-")
+            .getOrElse(1) { "default" }.split(".").first()
+        channels.set(listOf(channel))
     }
 
     runPluginVerifier {
@@ -144,4 +150,5 @@ tasks {
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }
+
 

@@ -7,6 +7,9 @@ This document provides a high-level view of the changes introduced by release.
 [[releasenotes]]
 == Release notes
 
+=== 0.0.5
+- Fix incorrect name specified in <fileType>
+
 === 0.0.3
 - Update the plugin description and comments to English
 - Support for Environment file(.env, \*.env, .env.*)

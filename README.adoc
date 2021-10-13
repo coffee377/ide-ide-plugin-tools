@@ -1,28 +1,18 @@
 = DevTools Plugin
 
+https://plugins.jetbrains.com/plugin/17704-devtools[HomePage] | https://github.com/coffee377/ide-plugin-tools[GitHub] | https://github.com/coffee377/ide-plugin-tools/issues[Issues]
+
 [[introduce]]
 == Introduction
 A collection of common development tools for IntelliJ products.
 
-files in your project. It supports the following IDEs:
-
-- Android Studio
-- AppCode
-- CLion
-- GoLand
-- IntelliJ IDEA
-- PhpStorm
-- PyCharm
-- RubyMine
-- WebStorm
-- DataGrip
-
 [[features]]
 == Features
+* support rpx or upx pixel unit for Mini Program
+* support for Environment configuration file
 
 [[install]]
 == Installation
-
 * Using IDE built-in plugin system:
 
 - Preferences > Plugins > Browse repositories... > Search for "DevTools" > Install Plugin

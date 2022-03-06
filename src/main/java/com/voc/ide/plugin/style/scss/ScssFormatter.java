@@ -23,8 +23,8 @@ public class ScssFormatter extends SCSSFormattingModelBuilder {
         ScssCodeStyleSettings customSettings = settings.getCustomSettings(ScssCodeStyleSettings.class);
         return new ScssFormattingExtension(commonSettings, customSettings) {
                     @Override
-            public CssTermListBlock createTermListBlock(ASTNode _node, Indent indent, Alignment alignment, boolean shouldIndentContent) {
-                return new StyleTermListBlock(_node, indent, this, alignment, shouldIndentContent);
+            public CssTermListBlock createTermListBlock(ASTNode node, Indent indent, Alignment alignment, boolean shouldIndentContent) {
+                return new StyleTermListBlock(node, indent, this, alignment, shouldIndentContent);
             }
         };
     }

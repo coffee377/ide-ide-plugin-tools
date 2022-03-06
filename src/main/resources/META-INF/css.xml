@@ -1,6 +1,7 @@
 <idea-plugin>
     <extensions defaultExtensionNs="com.intellij.css">
-        <!--        <cssInspectionFilter implementationClass=""/>-->
+        <!--        <cssInspectionFilter order="first" language="CSS"-->
+        <!--                             implementationClass="com.voc.ide.plugin.style.css.MiniProgramUnitInspectionFilter"/>-->
         <!--        <supportedFileTypesProvider implementation="extensions"/>-->
     </extensions>
     <extensions defaultExtensionNs="com.intellij">
@@ -10,6 +11,11 @@
                         implementationClass="com.voc.ide.plugin.style.css.CssFormatter"/>
         <lang.inspectionSuppressor language="CSS"
                                    implementationClass="com.voc.ide.plugin.style.css.CssInspection"/>
+
+
+        <highlightErrorFilter implementation="com.voc.ide.plugin.style.CssDeclarationNullValueErrorFilter"/>
+    </extensions>
+    <extensions defaultExtensionNs="com.intellij.highlightErrorFilter">
 
     </extensions>
 </idea-plugin>

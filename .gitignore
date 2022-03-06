@@ -4,6 +4,7 @@ lib
 out
 test.css
 build
+node_modules
 
 src/main/gen
 src/main/java/org
@@ -14,3 +15,5 @@ src/test/testData
 gradle.properties
 chain.crt
 private.pem
+package.json
+stylelint.config.js

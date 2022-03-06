@@ -23,8 +23,9 @@ public class LessFormatter extends LessFormattingModelBuilder {
         LessCodeStyleSettings customSettings = settings.getCustomSettings(LessCodeStyleSettings.class);
         return new LessFormattingExtension(commonSettings, customSettings) {
             @Override
-            public CssTermListBlock createTermListBlock(ASTNode _node, Indent indent, Alignment alignment, boolean shouldIndentContent) {
-                return new StyleTermListBlock(_node, indent, this, alignment, shouldIndentContent);
+            public CssTermListBlock createTermListBlock(ASTNode astNode, Indent indent, Alignment alignment,
+                                                        boolean shouldIndentContent) {
+                return new StyleTermListBlock(astNode, indent, this, alignment, shouldIndentContent);
             }
         };
     }

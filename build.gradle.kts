@@ -6,10 +6,11 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.5.10"
     id("org.jetbrains.changelog") version "1.3.0"
     id("org.asciidoctor.jvm.convert") version "3.3.2"
+    id("io.spring.dependency-management") version "1.0.11.RELEASE"
 }
 
 group = "com.voc.ide.plugin.tools"
-version = "0.0.5-alpha.0"
+version = "0.0.5-alpha.1"
 
 sourceSets {
     main {
@@ -23,19 +24,33 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    dependencies {
+        dependency("org.springframework:spring-core:4.0.3.RELEASE")
+//        dependency(mapOf(
+//            "group" to "org.springframework",
+//            "name" to "spring-core",
+//            "version" to "4.0.3.RELEASE"
+//        ))
+    }
+}
+
 dependencies {
 //    compileOnly("org.jsoup:jsoup:1.14.3")
+//    implementation("org.springframework:spring-core")
     compileOnly(files("lib/idea-php-dotenv-plugin-2021.3.0.212.jar"))
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 }
 
 var iu202121 = "D:\\SoftWare\\DeveloperKits\\JetBrains\\apps\\IDEA-U\\ch-0\\212.5080.55"
+var iu202124 = "D:\\SoftWare\\DeveloperKits\\JetBrains\\apps\\IDEA-U\\ch-0\\212.5712.43"
+var iu20213 = "D:\\SoftWare\\DeveloperKits\\JetBrains\\apps\\IDEA-U\\ch-0\\213.5744.223"
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
 //    version.set("2021.2.1")
-    localPath.set(iu202121)
+    localPath.set(iu202124)
     pluginName.set("devtools-intellij-plugin")
     updateSinceUntilBuild.set(false)
     downloadSources.set(false)

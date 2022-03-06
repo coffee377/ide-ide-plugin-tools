@@ -1,6 +1,7 @@
 package com.voc.ide.plugin.style.sass;
 
 import com.intellij.lexer.Lexer;
+import com.intellij.psi.css.impl.util.scheme.CssElementDescriptorFactory2;
 import com.voc.ide.plugin.style.StyleUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.plugins.less.highlighting.LESSSyntaxHighlighter;
@@ -17,6 +18,7 @@ public class SassSyntaxHighlighter extends SASSSyntaxHighlighter {
 
     @Override
     public @NotNull Lexer getHighlightingLexer() {
-        return new SASSHighlighterLexer(StyleUtils.valueIdentifiersWithRpxAndUpx());
+        return new SASSHighlighterLexer(CssElementDescriptorFactory2.getInstance().getValueIdentifiers());
+//        return new SASSHighlighterLexer(StyleUtils.valueIdentifiersWithRpxAndUpx());
     }
 }

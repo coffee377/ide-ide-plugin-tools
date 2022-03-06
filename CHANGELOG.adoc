@@ -9,6 +9,7 @@ This document provides a high-level view of the changes introduced by release.
 
 === 0.0.5
 - Fix incorrect name specified in <fileType>
+- Add null suppress for css declaration value
 
 === 0.0.3
 - Update the plugin description and comments to English

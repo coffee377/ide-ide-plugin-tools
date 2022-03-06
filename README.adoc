@@ -8,8 +8,10 @@ A collection of common development tools for IntelliJ products.
 
 [[features]]
 == Features
+* Extensions for vue plugin
 * support rpx or upx pixel unit for Mini Program
 * support for Environment configuration file
+
 
 [[install]]
 == Installation

@@ -2,8 +2,6 @@
     <id>com.voc.ide.plugin.tools</id>
     <name>DevTools</name>
     <vendor email="coffee377@dingtalk.com">coffee377</vendor>
-    <description>(automatically filled during build from description.html)</description>
-    <change-notes>(automatically filled during build from CHANGELOG.adoc)</change-notes>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html on how to target different products -->
     <depends>com.intellij.modules.platform</depends>

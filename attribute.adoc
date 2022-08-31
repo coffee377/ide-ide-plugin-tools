@@ -3,7 +3,6 @@
 :github: https://github.com
 :shields-io: https://img.shields.io
 
-
 :jetbrains-logo:
 :jetbrains-plugin-id: 17704-devtools
 :jetbrains-plugin-link: {jetbrains}/plugin/{jetbrains-plugin-id}
@@ -12,7 +11,7 @@
 
 :github-logo:
 :github-user: coffee377
-:github-workflows-badge: {github}/{github-user}/{repo-name}/actions/workflows/Build/badge.svg
+:github-workflows-badge: {github}/{github-user}/{repo-name}/workflows/Build/badge.svg?label=CI/CD
 :github-workflows-link: {github}/{github-user}/{repo-name}
 :github-forks-badge: {shields-io}/github/forks/{github-user}/{repo-name}
 :github-forks-link:

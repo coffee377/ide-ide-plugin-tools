@@ -1,6 +1,6 @@
 = DevTools
 
-include::attribute.adoc[]
+include::./attribute.adoc[]
 
 English | link:README-zh_CN.adoc[简体中文]
 

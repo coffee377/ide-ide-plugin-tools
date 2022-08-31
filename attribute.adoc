@@ -1,0 +1,31 @@
+:repo-name: ide-plugin-tools
+:jetbrains: https://plugins.jetbrains.com
+:github: https://github.com
+:shields-io: https://img.shields.io
+
+
+:jetbrains-logo:
+:jetbrains-plugin-id: 17704-devtools
+:jetbrains-plugin-link: {jetbrains}/plugin/{jetbrains-plugin-id}
+:jetbrains-plugin-version: {shields-io}/jetbrains/plugin/v/{jetbrains-plugin-id}
+:jetbrains-plugin-downloads: {shields-io}/jetbrains/plugin/d/{jetbrains-plugin-id}?label=jetbrains%20downloads
+
+:github-logo:
+:github-user: coffee377
+:github-workflows-badge: {github}/{github-user}/{repo-name}/actions/workflows/main.yml/badge.svg
+:github-workflows-link: {github}/{github-user}/{repo-name}
+:github-forks-badge: {shields-io}/github/forks/{github-user}/{repo-name}
+:github-forks-link:
+:github-stars-badge: {shields-io}/github/stars/{github-user}/{repo-name}
+:github-stars-link:
+:github-watchers-badge: {shields-io}/github/watchers/{github-user}/{repo-name}
+:github-watchers-link:
+:github-issues-closed-badge: {shields-io}/github/issues-closed/{github-user}/{repo-name}
+:github-issues: {github}/{github-user}/{repo-name}/issues
+:github-issues-link: {github-issues}/issues?q=is%3Aopen
+:github-issues-pr-bdage: {shields-io}/github/issues-pr/{github-user}/{repo-name}?color=yellow
+:github-issues-pr: {github}/{github-user}/{repo-name}/pulls
+:github-issues-pr-link: {github-issues-pr}?q=is%3Apr+is%3Aopen+
+:github-downloads-bdage: {shields-io}/github/downloads/{github-user}/{repo-name}/total?label=github%20downloads
+:github-downloads-link:
+:github-code-size-bdage: {shields-io}/github/languages/code-size/{github-user}/{repo-name}

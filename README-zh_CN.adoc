@@ -1,35 +1,55 @@
 = DevTools
 
+include::attribute.adoc[]
+
+link:README.adoc[English] | 简体中文
+
 // Plugin description start
-https://plugins.jetbrains.com/plugin/17704-devtools[HomePage] | https://github.com/coffee377/ide-plugin-tools[GitHub] | https://github.com/coffee377/ide-plugin-tools/issues[Issues]
+image:{jetbrains-plugin-version}[link={jetbrains-plugin-link}]
+image:{jetbrains-plugin-downloads}[link={jetbrains-plugin-link}]
 
-英文 | https://xxx[简体中文]
-
-image:https://img.shields.io/jetbrains/plugin/v/17704-devtools.svg[link=https://plugins.jetbrains.com/plugin/17704-devtools]
-image:https://img.shields.io/jetbrains/plugin/d/17704-devtools.svg[link=https://plugins.jetbrains.com/plugin/17704-devtools]
+image:{github-workflows-badge}[link={github-workflows-link}]
+image:{github-forks-badge}[link={github-forks-link}]
+image:{github-stars-badge}[link={github-stars-link}]
+image:{github-watchers-badge}[link={github-watchers-link}]
+image:{github-issues-closed-badge}[link={github-issues-link}]
+image:{github-issues-pr-bdage}[link={github-issues-pr-link}]
+image:{github-downloads-bdage}[link={github-downloads-link}]
+image:{github-code-size-bdage}[]
 
 [[introduce]]
-== Introduction
-A collection of common development tools for IntelliJ products.
+== 简介
+
+IntelliJ 系列产品的常用开发工具插件集合
 
 [[features]]
-== Features
-* Extensions for vue plugin
-* support rpx or upx pixel unit for Mini Program
-* support for Environment configuration file
+== 特性
 
+* “Vue.js”插件的扩展功能
+* 支持小程序像素单位(rpx 或 upx)
+* 支持环境配置文件(.env, *.env, .env.*)
 
 [[install]]
-== Installation
-* Using IDE built-in plugin system:
+== 安装
 
-- Preferences > Plugins > Browse repositories... > Search for "DevTools" > Install Plugin
+* 使用 IDE 内置插件系统：
 
-* Manually:
+- 首选项 > 插件 > 浏览存储库... > 搜索“DevTools” > 安装插件
 
-- Download the latest release and install it manually using Preferences > Plugins > Install plugin from disk...
+* 手动：
+
+- 下载最新版本并使用 Preferences > Plugins > 从磁盘安装插件手动安装...
 
 // Plugin description end
 
 [[usage]]
-== Usage
+== 用法
+
+[[contributing]]
+== 贡献 image:https://img.shields.io/badge/PRs-welcome-brightgreen.svg[link=https://makeapullrequest.com]
+
+欢迎任何类型的贡献，这里有一些你可以如何为这个项目做出贡献的例子😃：
+
+- 在日常工作中使用 DevTools
+- 提交 *{github-issues}[问题]* 以报告错误或提出问题
+- 提出 *{github-issues-pr}[拉取请求]* 以改进我们的代码

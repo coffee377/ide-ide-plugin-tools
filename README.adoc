@@ -1,26 +1,21 @@
 = DevTools
 
-// Plugin description start
-image:https://img.shields.io/jetbrains/plugin/v/17704-devtools.svg[link=https://plugins.jetbrains.com/plugin/17704-devtools]
-image:https://img.shields.io/jetbrains/plugin/d/17704-devtools.svg?label=jetbrains%20downloads[link=https://plugins.jetbrains.com/plugin/17704-devtools]
+include::attribute.adoc[]
 
 English | link:README-zh_CN.adoc[简体中文]
 
-image:https://github.com/coffee377/ide-plugin-tools/actions/workflows/main.yml/badge.svg[link=https://github.com/coffee377/ide-plugin-tools]
+// Plugin description start
+image:{jetbrains-plugin-version}[link={jetbrains-plugin-link}]
+image:{jetbrains-plugin-downloads}[link={jetbrains-plugin-link}]
 
-image:https://img.shields.io/github/forks/coffee377/ide-plugin-tools.svg[link=]
-image:https://img.shields.io/github/stars/coffee377/ide-plugin-tools.svg[link=]
-image:https://img.shields.io/github/watchers/coffee377/ide-plugin-tools?style=[link=]
-image:https://img.shields.io/github/issues-closed/coffee377/ide-plugin-tools.svg?color=[link=https://github.com/coffee377/ide-plugin-tools/issues?q=is%3Aopen]
-image:https://img.shields.io/github/issues-pr/coffee377/ide-plugin-tools.svg?color=yellow[link=https://github.com/coffee377/ide-plugin-tools/pulls?q=is%3Apr+is%3Aopen+]
-image:https://img.shields.io/github/downloads/coffee377/ide-plugin-tools/total.svg?label=github%20downloads[link=]
-image:https://img.shields.io/github/languages/code-size/coffee377/ide-plugin-tools[]
-
-
-//image:https://img.shields.io/badge/discussions-on%20github-blue[link=https://flat.badgen.net/github/label-issues/ant-design/ant-design/help%20wanted/open]
-//image:https://img.shields.io/badge/using-issues%20helper-orange[link=https://github.com/coffee377/ide-plugin-tools/issues]
-//image:https://flat.badgen.net/github/label-issues/coffee377/ide-plugin-tools/help%20wanted/open[link=https://github.com/coffee377/ide-plugin-tools/issues?q=is%3Aopen]
-
+image:{github-workflows-badge}[link={github-workflows-link}]
+image:{github-forks-badge}[link={github-forks-link}]
+image:{github-stars-badge}[link={github-stars-link}]
+image:{github-watchers-badge}[link={github-watchers-link}]
+image:{github-issues-closed-badge}[link={github-issues-link}]
+image:{github-issues-pr-bdage}[link={github-issues-pr-link}]
+image:{github-downloads-bdage}[link={github-downloads-link}]
+image:{github-code-size-bdage}[]
 
 [[introduce]]
 == Introduction
@@ -30,9 +25,9 @@ A collection of common development tools for IntelliJ products.
 [[features]]
 == Features
 
-* Extensions for vue plugin
+* Extensions for "Vue.js" plugin
 * support rpx or upx pixel unit for Mini Program
-* support for Environment configuration file
+* support for Environment configuration file(.env, \*.env, .env.*)
 
 [[install]]
 == Installation
@@ -52,3 +47,9 @@ A collection of common development tools for IntelliJ products.
 
 [[contributing]]
 == Contributing image:https://img.shields.io/badge/PRs-welcome-brightgreen.svg[link=https://makeapullrequest.com]
+
+Any type of contribution is welcome, here are some examples of how you may contribute to this project 😃 ：
+
+- Use DevTools in your daily work.
+- Submit *{github-issues}[issues]* to report bugs or ask questions.
+- Propose *{github-issues-pr}[pull requests]* to improve our code.

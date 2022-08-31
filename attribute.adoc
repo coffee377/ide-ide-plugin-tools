@@ -12,7 +12,7 @@
 
 :github-logo:
 :github-user: coffee377
-:github-workflows-badge: {github}/{github-user}/{repo-name}/actions/workflows/main.yml/badge.svg
+:github-workflows-badge: {github}/{github-user}/{repo-name}/actions/workflows/Build/badge.svg
 :github-workflows-link: {github}/{github-user}/{repo-name}
 :github-forks-badge: {shields-io}/github/forks/{github-user}/{repo-name}
 :github-forks-link:

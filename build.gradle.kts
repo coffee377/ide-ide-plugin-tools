@@ -25,10 +25,6 @@ plugins {
 group = properties("pluginGroup")
 version = properties("pluginVersion")
 
-println("------------------------")
-println(System.getenv("PRIVATE_KEY_PASSWORD"))
-println("------------------------")
-
 repositories {
     mavenCentral()
 }
@@ -84,15 +80,15 @@ intellij {
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     version.set(properties("pluginVersion"))
-//    path.set("${project.projectDir}/CHANGELOG.md")
-//    header.set(provider { "[${version.get()}] - ${date('')}" })
-//    itemPrefix.set("-")
-//    keepUnreleasedSection.set(true)
-//    unreleasedTerm.set("[Unreleased]")
+    path.set("${project.projectDir}/CHANGELOG.md")
+    header.set(provider { "[${version.get()}] - ${date()}" })
+    itemPrefix.set("-")
+    keepUnreleasedSection.set(true)
+    unreleasedTerm.set("[Unreleased]")
 //    groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Security"))
 
 
-    groups.set(emptyList())
+//    groups.set(emptyList())
 }
 
 // Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin

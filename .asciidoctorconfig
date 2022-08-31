@@ -1,3 +1,40 @@
+:pdf-themesdir: {asciidoctorconfigdir}/themes
+:pdf-fontsdir: {asciidoctorconfigdir}/fonts
+:pdf-theme: zh_CN
+
+// use Font Awesome for admonition icons
+:icons: font
+// the base folder for images
+:imagesdir: assets/images
+// the type of document: article, book, manpage or inline
+// see https://asciidoctor.org/docs/user-manual/#document-types
+:doctype: book
+
+:docinfo: shared
+
+//:sectnums:
+:toc-title: 目录
+// how many headline levels to display in table of contents?
+:toclevels: 3
+// https://asciidoctor.org/docs/user-manual/#sections-summary
+// turn numbering on or off (:sectnums!:)
+:sectnums:
+// enumerate how many section levels?
+:sectnumlevels: 3
+// show anchors when hovering over section headers
+//:sectanchors:
+// render section headings as self referencing links
+//:sectlinks:
+// number parts of a book
+//:partnums:
+
+
+//  语法高亮配置 默认 coderay
+:source-highlighter: rouge
+//:source-highlighter: highlight.js
+//:highlightjsdir: highlight
+//:highlightjs-theme: github
+
 :repo-name: ide-plugin-tools
 :jetbrains: https://plugins.jetbrains.com
 :github: https://github.com

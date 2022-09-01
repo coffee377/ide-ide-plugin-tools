@@ -3,14 +3,6 @@
     <name>DevTools</name>
     <vendor email="coffee377@dingtalk.com">coffee377</vendor>
 
-    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html on how to target different products -->
-    <depends>com.intellij.modules.platform</depends>
-    <depends optional="true" config-file="java.xml">com.intellij.modules.java</depends>
-    <depends optional="true" config-file="js.xml">JavaScript</depends>
-    <depends optional="true" config-file="css.xml">com.intellij.css</depends>
-    <depends optional="true" config-file="less.xml">org.jetbrains.plugins.less</depends>
-    <depends optional="true" config-file="sass.xml">org.jetbrains.plugins.sass</depends>
-    <depends optional="true" config-file="stylus.xml">org.jetbrains.plugins.stylus</depends>
 
     <extensionPoints>
         <extensionPoint interface="com.voc.ide.plugin.env.api.EnvironmentVariablesProvider"
@@ -18,6 +10,15 @@
         <extensionPoint interface="com.voc.ide.plugin.env.api.EnvironmentVariablesUsagesProvider"
                         name="environmentVariablesUsagesProvider"/>
     </extensionPoints>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends optional="true" config-file="java.xml">com.intellij.java</depends>
+    <depends optional="true" config-file="js.xml">JavaScript</depends>
+    <depends optional="true" config-file="styles/css.xml">com.intellij.css</depends>
+    <depends optional="true" config-file="styles/less.xml">org.jetbrains.plugins.less</depends>
+    <depends optional="true" config-file="styles/sass.xml">org.jetbrains.plugins.sass</depends>
+    <depends optional="true" config-file="styles/stylus.xml">org.jetbrains.plugins.stylus</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- 环境变量相关扩展 -->
@@ -31,16 +32,29 @@
         <!--        <spellchecker.support language="LESS" implementationClass="org.jetbrains.plugins.less.spellchecking.LessSpellcheckingStrategy"/>-->
         <!--        <spellchecker.bundledDictionaryProvider implementation="org.jetbrains.plugins.less.spellchecking.LessBundledDictionaryProvider"/>-->
         <!-- 自定义数据字典 -->
-        <!--        <spellchecker.dictionary.customDictionaryProvider implementation="com.voc.ide.dict.VocDictionaryProvider"/>-->
-        <!--        <spellchecker.dictionary.runtimeDictionaryProvider implementation="com.voc.ide.dict.VocDictionaryProvider"/>-->
-        <!--        <internalFileTemplate name="Tpl File"/>-->
+        <!--         <spellchecker.dictionary.customDictionaryProvider implementation="com.voc.ide.dict.VocDictionaryProvider"/>-->
+        <!--         <spellchecker.dictionary.runtimeDictionaryProvider implementation="com.voc.ide.dict.VocDictionaryProvider"/>-->
+        <!--         <internalFileTemplate name="Tpl File"/>-->
+        <liveTemplateMacro implementation="com.voc.ide.web.ComponentMacro"/>
+<!--        <fileTemplateGroup implementation="ide"/>-->
     </extensions>
 
     <actions>
         <!-- 新建环境变量文件 -->
-        <action id="EnvFileAction" class="com.voc.ide.actions.EnvFileAction">
+        <action id="EnvFileAction" class="com.voc.ide.actions.CreateEnvFileAction">
             <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>
         </action>
+<!--        <action id="commitGuideAction" class="club.gclmit.plugin.jetbrains.gitfox.config.CommitGuideAction"-->
+<!--                text="Gitfox Commit Guide" icon="/icons/logo.svg">-->
+<!--            <keyboard-shortcut first-keystroke="ctrl alt g" keymap="$default" />-->
+<!--            <add-to-group group-id="Vcs.MessageActionGroup" anchor="first"/>-->
+<!--        </action>-->
+
+        <!--  -->
+<!--        <group class="club.gclmit.plugin.jetbrains.gitfox.config.LicenseTemplateGroup"-->
+<!--               id="club.gclmit.plugin.jetbrains.gitfox.config.LicenseTemplateGroup">-->
+<!--            <add-to-group group-id="NewGroup" relative-to-action="NewFromTemplate" anchor="before"/>-->
+<!--        </group>-->
     </actions>
 
 </idea-plugin>

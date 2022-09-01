@@ -1,2 +1,5 @@
 <idea-plugin>
+    <extensions defaultExtensionNs="JavaScript">
+
+    </extensions>
 </idea-plugin>

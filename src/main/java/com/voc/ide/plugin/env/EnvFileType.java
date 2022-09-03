@@ -16,6 +16,7 @@ import javax.swing.*;
  */
 public class EnvFileType extends LanguageFileType {
     public static final EnvFileType INSTANCE = new EnvFileType();
+    public static final String SUFFIX = "env";
 
     public EnvFileType() {
         super(EnvLanguage.INSTANCE);
@@ -33,7 +34,7 @@ public class EnvFileType extends LanguageFileType {
 
     @Override
     public @NotNull String getDefaultExtension() {
-        return "env";
+        return SUFFIX;
     }
 
     @Override

@@ -6,14 +6,17 @@ import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author WuYujie
+ * @author Wu Yujie
  * @email coffee377@dingtalk.com
- * @time 2022/09/03 23:56
+ * @time 2021/09/30 12:08
  */
-public class EnvElementType extends IElementType {
-
-    public EnvElementType(@NotNull @NonNls String debugName) {
+public class EnvTokenType extends IElementType {
+    public EnvTokenType(@NonNls @NotNull String debugName) {
         super(debugName, EnvLanguage.INSTANCE);
     }
 
+    @Override
+    public String toString() {
+        return "EnvTokenType." + super.toString();
+    }
 }

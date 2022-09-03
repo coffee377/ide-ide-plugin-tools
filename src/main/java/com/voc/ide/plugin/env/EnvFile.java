@@ -1,4 +1,4 @@
-package com.voc.ide.plugin.env.psi;
+package com.voc.ide.plugin.env;
 
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.openapi.fileTypes.FileType;
@@ -24,7 +24,7 @@ public class EnvFile extends PsiFileBase {
 
     @Override
     public String toString() {
-        return "env file";
+        return "Env file";
     }
 
 }

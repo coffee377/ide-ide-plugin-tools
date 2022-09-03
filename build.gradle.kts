@@ -6,7 +6,6 @@ import java.util.stream.Collectors
 fun properties(key: String) = project.findProperty(key).toString()
 
 plugins {
-//    `java-library`
     // Java support
     id("java")
     // Kotlin support
@@ -25,6 +24,8 @@ plugins {
 group = properties("pluginGroup")
 version = properties("pluginVersion")
 
+sourceSets["main"].java.srcDirs("src/main/gen")
+
 repositories {
     mavenCentral()
 }
@@ -38,13 +39,16 @@ dependencyManagement {
 }
 
 dependencies {
-//    compileOnly("org.jsoup:jsoup:1.14.3")
 //    implementation("org.springframework:spring-core")
 //    compileOnly(files("lib/idea-php-dotenv-plugin-2021.3.0.212.jar"))
+//    testImplementation("org.junit.jupiter:junit-jupiter-api")
+//    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation(platform("org.junit:junit-bom:5.9.0"))
+//    testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
-
 
 
 // Set the JVM language level used to compile sources and generate files - Java 11 is required since 2020.3
@@ -144,6 +148,7 @@ tasks {
             jvmTarget = "11"
             freeCompilerArgs = freeCompilerArgs + "-Xjvm-default=enable"
         }
+//        dependsOn(generateParser, generateLexer)
     }
 
     patchPluginXml {
@@ -210,11 +215,12 @@ tasks {
         channels.set(listOf(channel))
     }
 
-//    runPluginVerifier {
-//        ideVersions.set(listOf("2021.2.1"))
-//    }
-//
-//    buildSearchableOptions {
-//        enabled.and(false)
-//    }
+    runPluginVerifier {
+        ideVersions.set(listOf("2021.2.1"))
+    }
+
+    buildSearchableOptions {
+        enabled.and(false)
+    }
 }
+

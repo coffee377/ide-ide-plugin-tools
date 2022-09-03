@@ -1,0 +1,9 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.voc.ide.plugin.tools">
+        <environmentVariablesProvider implementation="com.voc.ide.plugin.env.docker.DockerfileVariablesProvider"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <gotoDeclarationHandler implementation="com.voc.ide.plugin.env.docker.DockerfileKeyGotoHandler"/>
+    </extensions>
+</idea-plugin>

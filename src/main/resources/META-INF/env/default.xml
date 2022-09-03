@@ -1,0 +1,37 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.voc.ide.plugin.tools">
+        <environmentVariablesProvider implementation="com.voc.ide.plugin.env.EnvVariablesProvider"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- 注册文件类型 -->
+        <fileType name="Env File" language="Env" patterns="*.env*"
+                  fieldName="INSTANCE"
+                  implementationClass="com.voc.ide.plugin.env.EnvFileType"/>
+        <!-- 语法解析 -->
+        <lang.parserDefinition language="Env" implementationClass="com.voc.ide.plugin.env.EnvParserDefinition"/>
+
+        <projectService serviceImplementation="com.voc.ide.plugin.env.EnvSettings"/>
+
+        <!-- 语法高亮 & 颜色配置 -->
+        <lang.syntaxHighlighterFactory language="Env"
+                                       implementationClass="com.voc.ide.plugin.env.highlight.EnvSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="com.voc.ide.plugin.env.highlight.EnvColorSettingsPage"/>
+
+        <createFromTemplateHandler implementation="com.voc.ide.plugin.env.handler.EnvCreateFromTemplateHandler"/>
+
+        <localInspection language="Env"
+                         groupName="Env"
+                         shortName="EnvDuplicateKeyInspection"
+                         displayName="Duplicate keys"
+                         enabledByDefault="true"
+                         level="WARNING"
+                         implementationClass="com.voc.ide.plugin.env.inspections.DuplicateKeyInspection"/>
+    </extensions>
+
+    <actions>
+        <action id="EnvFileAction" class="com.voc.ide.plugin.env.action.CreateEnvFileAction">
+            <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>
+        </action>
+    </actions>
+</idea-plugin>

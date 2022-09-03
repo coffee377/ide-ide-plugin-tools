@@ -6,7 +6,6 @@ test.css
 build
 node_modules
 
-src/main/gen
 src/main/java/org
 src/main/resources/icons/jar-gray.png
 

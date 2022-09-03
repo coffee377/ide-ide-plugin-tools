@@ -8,6 +8,7 @@ import com.voc.ide.plugin.env.models.KeyValuePsiElement;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * @author Wu Yujie
@@ -17,11 +18,23 @@ import java.util.Collection;
 public class EnvVariablesProvider implements EnvironmentVariablesProvider {
     @Override
     public @NotNull FileAcceptResult acceptFile(VirtualFile virtualFile) {
-        return null;
+        if(!virtualFile.getFileType().equals(EnvFileType.INSTANCE)) {
+            return FileAcceptResult.NOT_ACCEPTED;
+        }
+
+        // .env.dist , .env.example files are secondary
+        return virtualFile.getName().equals(".env") ? FileAcceptResult.ACCEPTED : FileAcceptResult.ACCEPTED_SECONDARY;
     }
 
     @Override
     public @NotNull Collection<KeyValuePsiElement> getElements(PsiFile psiFile) {
-        return null;
+//        if(psiFile instanceof EnvFile) {
+//            EnvPsiElementsVisitor visitor = new EnvPsiElementsVisitor();
+//            psiFile.acceptChildren(visitor);
+//
+//            return visitor.getCollectedItems();
+//        }
+
+        return Collections.emptyList();
     }
 }

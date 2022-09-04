@@ -1,4 +1,4 @@
-= DevTools Plugin Changelog
+= Changelog
 
 == About
 
@@ -6,6 +6,9 @@ This document provides a high-level view of the changes introduced by release.
 
 [[releasenotes]]
 == Release notes
+
+=== 0.0.6
+- Env syntax lexical optimization
 
 === 0.0.5
 - Fix incorrect name specified in <fileType>

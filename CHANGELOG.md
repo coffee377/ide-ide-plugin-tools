@@ -1,31 +1,17 @@
 # Changelog
 
 ## [Unreleased]
-### Added
 
-### Changed
+## [0.0.6]
+- Env syntax lexical optimization 
 
-### Deprecated
+## [0.0.5]
+- Fix incorrect name specified in <fileType>
+- Add null suppress for css declaration value
 
-### Removed
+## [0.0.3]
+- Update the plugin description and comments to English
+- Support for Environment file(.env, \*.env, .env.*)
 
-### Fixed
-
-### Security
-
-## [0.0.5-alpha.2] - 2022-08-31
-### Added
-
-### Changed
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
-
-## [0.0.5-alpha.2] - 2022-08-31
-### Added
-- Example item
+## [0.0.1]
+- support rpx or upx pixel unit for Mini Program

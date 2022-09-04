@@ -38,7 +38,7 @@ KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
 
 <YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return EnvTypes.COMMENT; }
 
-<YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return EnvTypes.KEY; }
+<YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return EnvTypes.KEY_CHARS; }
 
 <YYINITIAL> {SEPARATOR}                                     { yybegin(WAITING_VALUE); return EnvTypes.SEPARATOR; }
 
@@ -46,7 +46,7 @@ KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
 
 <WAITING_VALUE> {WHITE_SPACE}+                              { yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE; }
 
-<WAITING_VALUE> {FIRST_VALUE_CHARACTER}{VALUE_CHARACTER}*   { yybegin(YYINITIAL); return EnvTypes.VALUE; }
+<WAITING_VALUE> {FIRST_VALUE_CHARACTER}{VALUE_CHARACTER}*   { yybegin(YYINITIAL); return EnvTypes.VALUE_CHARS; }
 
 ({CRLF}|{WHITE_SPACE})+                                     { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 

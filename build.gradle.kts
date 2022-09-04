@@ -11,7 +11,7 @@ plugins {
     // Kotlin support
     id("org.jetbrains.kotlin.jvm") version "1.7.10"
     // Gradle IntelliJ Plugin
-    id("org.jetbrains.intellij") version "1.8.1"
+    id("org.jetbrains.intellij") version "1.9.0"
     // Gradle Changelog Plugin
     id("org.jetbrains.changelog") version "1.3.1"
     // Gradle Qodana Plugin
@@ -39,12 +39,8 @@ dependencyManagement {
 }
 
 dependencies {
-//    implementation("org.springframework:spring-core")
-//    compileOnly(files("lib/idea-php-dotenv-plugin-2021.3.0.212.jar"))
-//    testImplementation("org.junit.jupiter:junit-jupiter-api")
-//    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    compileOnly("org.jsoup:jsoup:1.14.3")
     testImplementation(platform("org.junit:junit-bom:5.9.0"))
-//    testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
@@ -57,16 +53,6 @@ kotlin {
         languageVersion.set(JavaLanguageVersion.of(11))
     }
 }
-
-/* https://github.com/JetBrains/gradle-intellij-plugin */
-//intellij {
-//    version.set("IU-2022.1.1")
-//    type.set("IU")
-//    pluginName.set("devtools-intellij-plugin")
-//    updateSinceUntilBuild.set(false)
-//    downloadSources.set(false)
-//    plugins.set(arrayListOf("java", "JavaScript", "less", "sass", "stylus"))
-//}
 
 // Configure Gradle IntelliJ Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
@@ -88,11 +74,7 @@ changelog {
     header.set(provider { "[${version.get()}] - ${date()}" })
     itemPrefix.set("-")
     keepUnreleasedSection.set(true)
-    unreleasedTerm.set("[Unreleased]")
-//    groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Security"))
-
-
-//    groups.set(emptyList())
+    groups.set(emptyList())
 }
 
 // Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
@@ -148,44 +130,66 @@ tasks {
             jvmTarget = "11"
             freeCompilerArgs = freeCompilerArgs + "-Xjvm-default=enable"
         }
-//        dependsOn(generateParser, generateLexer)
     }
 
     patchPluginXml {
+        //        setDependsOn(listOf(asciidoctor))
         version.set(properties("pluginVersion"))
         pluginId.set(properties("pluginGroup"))
         sinceBuild.set(properties("pluginSinceBuild"))
 
-//        properties("pluginUntilBuild").isNotEmpty().ifTrue {
-//            ()-> untilBuild.set(properties("pluginUntilBuild"))
-//        }
+        if (properties("pluginUntilBuild").isNotEmpty()) {
+            untilBuild.set(properties("pluginUntilBuild"))
+        }
 
-        // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
-        pluginDescription.set(
-            projectDir.resolve("README.md").readText().lines().run {
-                val start = "<!-- Plugin description -->"
-                val end = "<!-- Plugin description end -->"
+        val descriptionFile = file("build/docs/README.html")
+        if (descriptionFile.exists()) {
+            val description = org.jsoup.Jsoup.parse(descriptionFile.readText(charset("UTF-8")))
+                .select("#content").first()?.children()?.stream()?.map { e -> e.html() }?.collect(
+                    Collectors.joining("")
+                )
+            pluginDescription.set(description)
+        } else {
+            // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
+            pluginDescription.set(
+                projectDir.resolve("README.md").readText().lines().run {
+                    val start = "<!-- Plugin description -->"
+                    val end = "<!-- Plugin description end -->"
 
-                if (!containsAll(listOf(start, end))) {
-                    throw GradleException("Plugin description section not found in README.md:\n$start ... $end")
-                }
-                subList(indexOf(start) + 1, indexOf(end))
-            }.joinToString("\n").run { markdownToHTML(this) }
-        )
+                    if (!containsAll(listOf(start, end))) {
+                        throw GradleException("Plugin description section not found in README.md:\n$start ... $end")
+                    }
+                    subList(indexOf(start) + 1, indexOf(end))
+                }.joinToString("\n").run { markdownToHTML(this) }
+            )
+        }
 
-//        setDependsOn(listOf(asciidoctor))
-//        sinceBuild.set("212.2.1")
-//        pluginId.set(project.group.toString())
-//        changeNotes.set(provider {
-//            changelog.getLatest().toHTML()
-//        })
-
-        // Get the latest available change notes from the changelog file
-        changeNotes.set(provider {
-            changelog.run {
-                getOrNull(properties("pluginVersion")) ?: getLatest()
-            }.toHTML()
-        })
+        val changelogFile = file("build/docs/CHANGELOG.html")
+        if (changelogFile.exists()) {
+            val changelog = org.jsoup.Jsoup.parse(changelogFile.readText(charset("UTF-8")))
+                .select("#releasenotes").first()
+                ?.nextElementSibling()?.children()?.stream()?.map { e ->
+                    e.html()
+                        // issues id
+                        .replace(
+                            Regex("#([0-9]+)"),
+                            "<a href=\"https://github.com/coffee377/ide-plugin-tools/issues/\$1\">#\$1</a>"
+                        )
+                        // regex for GitHub usernames from https://github.com/shinnn/github-username-regex
+                        .replace(
+                            Regex("(?i)@([a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38})"),
+                            "<a href=\"https://github.com/\$1\">@\$1</a>"
+                        )
+                }?.collect(Collectors.joining(""))
+            changeNotes.set(changelog)
+        } else {
+            // Get the latest available change notes from the changelog file
+            changeNotes.set(provider {
+                changelog.run {
+                    getOrNull(properties("pluginVersion")) ?: getLatest()
+                }.toHTML()
+            })
+        }
 
     }
 
@@ -221,6 +225,10 @@ tasks {
 
     buildSearchableOptions {
         enabled.and(false)
+    }
+
+    runIde {
+//        jvmArgs()
     }
 }
 

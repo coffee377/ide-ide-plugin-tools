@@ -71,6 +71,6 @@ public class EnvColorSettingsPage implements ColorSettingsPage {
 
     @Override
     public @NotNull @NlsContexts.ConfigurableName String getDisplayName() {
-        return "Env";
+        return "Env File";
     }
 }

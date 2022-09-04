@@ -4,7 +4,7 @@ import com.intellij.ide.fileTemplates.CreateFromTemplateHandler;
 import com.intellij.ide.fileTemplates.DefaultCreateFromTemplateHandler;
 import com.intellij.ide.fileTemplates.FileTemplate;
 import com.intellij.psi.PsiDirectory;
-import com.voc.ide.plugin.env.util.EnvFileName;
+import com.voc.ide.plugin.env.psi.util.EnvFileName;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;

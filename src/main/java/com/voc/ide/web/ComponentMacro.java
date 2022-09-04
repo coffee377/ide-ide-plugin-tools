@@ -35,6 +35,7 @@ public class ComponentMacro extends MacroBase {
         return new TextResult(text);
     }
 
+
     @Override
     public boolean isAcceptableInContext(TemplateContextType context) {
         return super.isAcceptableInContext(context);

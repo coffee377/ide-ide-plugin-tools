@@ -1,5 +1,6 @@
 package com.voc.ide.plugin.env.api;
 
+import com.intellij.openapi.extensions.ExtensionPointName;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.voc.ide.plugin.env.models.KeyValuePsiElement;
@@ -12,7 +13,9 @@ import java.util.Collection;
  * @email coffee377@dingtalk.com
  * @time 2021/09/30 11:39
  */
-public interface EnvironmentVariablesProvider {
+public interface EnvVarsProvider {
+//    ExtensionPointName<EnvExtensionPoint<EnvVarsProvider>> EP_NAME = ExtensionPointName.create("com.voc.ide.plugin.tools.env.vars.provider");
+
     /**
      * 是否接受文件
      *

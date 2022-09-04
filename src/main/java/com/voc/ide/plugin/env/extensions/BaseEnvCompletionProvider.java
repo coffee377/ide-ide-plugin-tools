@@ -1,4 +1,4 @@
-package com.voc.ide.plugin.env.common;
+package com.voc.ide.plugin.env.extensions;
 
 import com.intellij.codeInsight.completion.CompletionContributor;
 import com.intellij.codeInsight.completion.CompletionResultSet;
@@ -12,14 +12,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
-abstract public class BaseEnvCompletionProvider extends CompletionContributor implements GotoDeclarationHandler {
+public abstract class BaseEnvCompletionProvider extends CompletionContributor implements GotoDeclarationHandler {
 
     protected void fillCompletionResultSet(@NotNull CompletionResultSet completionResultSet, @NotNull Project project) {
-        for(Map.Entry<String, String> entry : EnvironmentVariablesApi.getAllKeyValues(project).entrySet()) {
+        for (Map.Entry<String, String> entry : EnvironmentVariablesApi.getAllKeyValues(project).entrySet()) {
             LookupElementBuilder lockup = LookupElementBuilder.create(entry.getKey())
                     .withCaseSensitivity(false);
 
-            if(StringUtils.isNotEmpty(entry.getValue())) {
+            if (StringUtils.isNotEmpty(entry.getValue())) {
                 lockup = lockup.withTailText(" = " + entry.getValue(), true);
             }
 

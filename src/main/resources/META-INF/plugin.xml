@@ -1,4 +1,4 @@
-<idea-plugin>
+<idea-plugin xmlns:xi="http://www.w3.org/2001/XInclude">
     <id>com.voc.ide.plugin.tools</id>
     <name>DevTools</name>
     <vendor email="coffee377@dingtalk.com">coffee377</vendor>
@@ -12,12 +12,21 @@
     <depends optional="true" config-file="styles/sass.xml">org.jetbrains.plugins.sass</depends>
     <depends optional="true" config-file="styles/stylus.xml">org.jetbrains.plugins.stylus</depends>
 
-    <!-- 环境变量扩展接口 -->
+    <!--    <xi:include href="EnvExtensionPoints.xml"/>-->
     <extensionPoints>
-        <extensionPoint interface="com.voc.ide.plugin.env.api.EnvironmentVariablesProvider"
-                        name="environmentVariablesProvider"/>
-        <extensionPoint interface="com.voc.ide.plugin.env.api.EnvironmentVariablesUsagesProvider"
-                        name="environmentVariablesUsagesProvider"/>
+
+        <!-- 环境变量扩展点 -->
+        <!-- 通过 bean 进行扩展 -->
+        <extensionPoint name="env.vars.provider" beanClass="com.voc.ide.plugin.env.api.EnvExtensionPoint"
+                        dynamic="true">
+            <with attribute="implementationClass" implements="com.voc.ide.plugin.env.api.EnvVarsProvider"/>
+        </extensionPoint>
+
+        <!--        <extensionPoint name="env.vars.provider" interface="com.voc.ide.plugin.env.api.EnvVarsProvider" dynamic="true"/>-->
+
+        <!-- 通过接口进行扩展 -->
+        <extensionPoint name="env.vars.usages.provider"
+                        interface="com.voc.ide.plugin.env.api.EnvVarsUsagesProvider" dynamic="true"/>
     </extensionPoints>
 
     <!-- 默认环境变量配置 -->

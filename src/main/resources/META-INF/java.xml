@@ -2,4 +2,12 @@
     <extensions defaultExtensionNs="com.intellij.java">
 
     </extensions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <annotator language="JAVA" implementationClass="com.voc.ide.plugin.env.extensions.EnvAnnotator"/>
+        <codeInsight.lineMarkerProvider language="JAVA"
+                                        implementationClass="com.voc.ide.plugin.env.extensions.EnvLineMarkerProvider"/>
+        <psi.referenceContributor language="JAVA" implementation="com.voc.ide.plugin.env.extensions.EnvReferenceContributor"/>
+    </extensions>
+
 </idea-plugin>

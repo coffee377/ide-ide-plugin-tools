@@ -1,4 +1,4 @@
-package com.voc.ide.plugin.env.util;
+package com.voc.ide.plugin.env.psi.util;
 
 import java.util.regex.Pattern;
 

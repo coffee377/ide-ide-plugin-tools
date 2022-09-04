@@ -3,15 +3,16 @@ package com.voc.ide.plugin.env.api;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiManager;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.search.PsiSearchHelper;
 import com.intellij.util.indexing.FileBasedIndex;
+import com.voc.ide.plugin.env.extensions.EnvFileIndex;
+import com.voc.ide.plugin.env.psi.util.EnvUtil;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class EnvironmentVariablesApi {
 
@@ -24,35 +25,35 @@ public class EnvironmentVariablesApi {
 
         GlobalSearchScope scope = GlobalSearchScope.allScope(project);
 
-//        fileBasedIndex.processAllKeys(DotEnvKeyValuesIndex.KEY, key -> {
-//            for (VirtualFile virtualFile : fileBasedIndex.getContainingFiles(DotEnvKeyValuesIndex.KEY, key, scope)) {
-//
-//                FileAcceptResult fileAcceptResult;
-//
-//                if (resultsCache.containsKey(virtualFile)) {
-//                    fileAcceptResult = resultsCache.get(virtualFile);
-//                } else {
-//                    fileAcceptResult = getFileAcceptResult(virtualFile);
-//                    resultsCache.put(virtualFile, fileAcceptResult);
-//                }
-//
-//                if (!fileAcceptResult.isAccepted()) {
-//                    continue;
-//                }
-//
-//                fileBasedIndex.processValues(DotEnvKeyValuesIndex.KEY, key, virtualFile, ((file, val) -> {
-//                    if (fileAcceptResult.isPrimary()) {
-//                        keyValues.putIfAbsent(key, val);
-//                    } else {
-//                        secondaryKeyValues.putIfAbsent(key, val);
-//                    }
-//
-//                    return true;
-//                }), scope);
-//            }
-//
-//            return true;
-//        }, project);
+        fileBasedIndex.processAllKeys(EnvFileIndex.KEY, key -> {
+            for (VirtualFile virtualFile : fileBasedIndex.getContainingFiles(EnvFileIndex.KEY, key, scope)) {
+
+                FileAcceptResult fileAcceptResult;
+
+                if (resultsCache.containsKey(virtualFile)) {
+                    fileAcceptResult = resultsCache.get(virtualFile);
+                } else {
+                    fileAcceptResult = getFileAcceptResult(virtualFile);
+                    resultsCache.put(virtualFile, fileAcceptResult);
+                }
+
+                if (!fileAcceptResult.isAccepted()) {
+                    continue;
+                }
+
+                fileBasedIndex.processValues(EnvFileIndex.KEY, key, virtualFile, ((file, val) -> {
+                    if (fileAcceptResult.isPrimary()) {
+                        keyValues.putIfAbsent(key, val);
+                    } else {
+                        secondaryKeyValues.putIfAbsent(key, val);
+                    }
+
+                    return true;
+                }), scope);
+            }
+
+            return true;
+        }, project);
 
         secondaryKeyValues.putAll(keyValues);
 
@@ -69,23 +70,24 @@ public class EnvironmentVariablesApi {
         List<PsiElement> targets = new ArrayList<>();
         List<PsiElement> secondaryTargets = new ArrayList<>();
 
-//        FileBasedIndex.getInstance().getFilesWithKey(DotEnvKeyValuesIndex.KEY, new HashSet<>(Collections.singletonList(key)), virtualFile -> {
-//            PsiFile psiFileTarget = PsiManager.getInstance(project).findFile(virtualFile);
-//            if (psiFileTarget == null) {
-//                return true;
-//            }
-//
+        FileBasedIndex.getInstance().getFilesWithKey(EnvFileIndex.KEY, new HashSet<>(Collections.singletonList(key)), virtualFile -> {
+            PsiFile psiFileTarget = PsiManager.getInstance(project).findFile(virtualFile);
+            if (psiFileTarget == null) {
+                return true;
+            }
+
 //            for (EnvironmentVariablesProvider provider : EnvironmentVariablesProviderUtil.PROVIDERS) {
 //                FileAcceptResult fileAcceptResult = provider.acceptFile(virtualFile);
 //                if (!fileAcceptResult.isAccepted()) {
 //                    continue;
 //                }
 //
-//                (fileAcceptResult.isPrimary() ? targets : secondaryTargets).addAll(EnvironmentVariablesUtil.getElementsByKey(key, provider.getElements(psiFileTarget)));
+//                (fileAcceptResult.isPrimary() ? targets : secondaryTargets).addAll(EnvUtil.getElementsByKey(key,
+//                        provider.getElements(psiFileTarget)));
 //            }
-//
-//            return true;
-//        }, GlobalSearchScope.allScope(project));
+
+            return true;
+        }, GlobalSearchScope.allScope(project));
 
         return (targets.size() > 0 ? targets : secondaryTargets).toArray(PsiElement.EMPTY_ARRAY);
     }

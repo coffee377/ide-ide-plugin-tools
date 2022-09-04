@@ -4,9 +4,9 @@
 [![Version](https://img.shields.io/jetbrains/plugin/v/17704-devtools.svg)](https://plugins.jetbrains.com/plugin/17704-devtools)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/17704-devtools.svg)](https://plugins.jetbrains.com/plugin/17704-devtools)
 
-## Introduction
-
 <!-- Plugin description -->
+
+## Introduction
 
 A collection of common development tools for IntelliJ products.
 

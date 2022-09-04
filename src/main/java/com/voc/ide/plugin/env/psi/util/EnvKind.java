@@ -1,4 +1,4 @@
-package com.voc.ide.plugin.env.util;
+package com.voc.ide.plugin.env.psi.util;
 
 import com.voc.ide.plugin.DevToolsBundle;
 import com.voc.ide.plugin.DevToolsIcons;

@@ -7,7 +7,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiDirectory;
 import com.voc.ide.plugin.DevToolsBundle;
 import com.voc.ide.plugin.DevToolsIcons;
-import com.voc.ide.plugin.env.util.EnvKind;
+import com.voc.ide.plugin.env.psi.util.EnvKind;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 

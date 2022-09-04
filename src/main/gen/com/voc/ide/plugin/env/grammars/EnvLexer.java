@@ -499,7 +499,7 @@ public class EnvLexer implements FlexLexer {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { yybegin(YYINITIAL); return EnvTypes.KEY;
+            { yybegin(YYINITIAL); return EnvTypes.KEY_CHARS;
             }
             // fall through
           case 8: break;
@@ -524,7 +524,7 @@ public class EnvLexer implements FlexLexer {
             // fall through
           case 12: break;
           case 6:
-            { yybegin(YYINITIAL); return EnvTypes.VALUE;
+            { yybegin(YYINITIAL); return EnvTypes.VALUE_CHARS;
             }
             // fall through
           case 13: break;

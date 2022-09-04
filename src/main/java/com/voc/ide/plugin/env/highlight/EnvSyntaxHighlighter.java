@@ -50,13 +50,13 @@ public class EnvSyntaxHighlighter extends SyntaxHighlighterBase {
         if (tokenType.equals(EnvTypes.SEPARATOR)) {
             return SEPARATOR_KEYS;
         }
-        if (tokenType.equals(EnvTypes.KEY)) {
+        if (tokenType.equals(EnvTypes.KEY_CHARS)) {
             return KEY_KEYS;
         }
-        if (tokenType.equals(EnvTypes.VALUE)) {
+        if (tokenType.equals(EnvTypes.VALUE_CHARS)) {
             return VALUE_KEYS;
         }
-        if (tokenType.equals(EnvTypes.COMMENT)) {
+        if (tokenType.equals(EnvTypes.COMMENT) || tokenType.equals(EnvTypes.EXPORT)) {
             return COMMENT_KEYS;
         }
         if (tokenType.equals(TokenType.BAD_CHARACTER)) {

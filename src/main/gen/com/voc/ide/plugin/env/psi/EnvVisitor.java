@@ -7,7 +7,19 @@ import com.intellij.psi.PsiElement;
 
 public class EnvVisitor extends PsiElementVisitor {
 
+  public void visitKey(@NotNull EnvKey o) {
+    visitPsiElement(o);
+  }
+
   public void visitProperty(@NotNull EnvProperty o) {
+    visitNamedElement(o);
+  }
+
+  public void visitValue(@NotNull EnvValue o) {
+    visitPsiElement(o);
+  }
+
+  public void visitNamedElement(@NotNull EnvNamedElement o) {
     visitPsiElement(o);
   }
 

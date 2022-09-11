@@ -4,10 +4,29 @@
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <annotator language="JAVA" implementationClass="com.voc.ide.plugin.env.extensions.EnvAnnotator"/>
+        <!--        <annotator language="JAVA" implementationClass="com.voc.ide.plugin.env.extensions.EnvAnnotator"/>-->
         <codeInsight.lineMarkerProvider language="JAVA"
                                         implementationClass="com.voc.ide.plugin.env.extensions.EnvLineMarkerProvider"/>
-        <psi.referenceContributor language="JAVA" implementation="com.voc.ide.plugin.env.extensions.EnvReferenceContributor"/>
+
+        <!--        <psi.referenceContributor language="JAVA"-->
+        <!--                                  implementation="com.voc.ide.plugin.env.extensions.EnvReferenceContributor"/>-->
+
+        <!-- 自定义 javadoc 标签 -->
+        <javadocTagInfo implementation="com.voc.ide.javadoc.EmailDocTagInfo"/>
+        <javadocTagInfo implementation="com.voc.ide.javadoc.TimeDocTagInfo"/>
+        <javadocTagInfo implementation="com.voc.ide.javadoc.DateDocTagInfo"/>
+        <completion.contributor language="JAVA"
+                                implementationClass="com.voc.ide.javadoc.CustomJavaDocCompletionContributor"/>
+
+
+        <!-- 动态模板 -->
+        <defaultLiveTemplates file="/liveTemplates/Env.xml"/>
+        <liveTemplateContext implementation="com.voc.ide.liveTemplates.EnvContextType$Generic"/>
+        <liveTemplateContext implementation="com.voc.ide.liveTemplates.EnvContextType$Key"/>
+        <liveTemplateContext implementation="com.voc.ide.liveTemplates.EnvContextType$Value"/>
+        <liveTemplateMacro implementation="com.voc.ide.liveTemplates.ComponentNameMacro"/>
+
+
     </extensions>
 
 </idea-plugin>

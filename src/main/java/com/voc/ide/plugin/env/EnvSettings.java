@@ -31,4 +31,6 @@ public class EnvSettings implements PersistentStateComponent<EnvSettings> {
     public static EnvSettings getInstance(Project project) {
         return project.getService(EnvSettings.class);
     }
+
+
 }

@@ -3,13 +3,13 @@ package com.voc.ide.plugin.env.extensions;
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo;
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerProvider;
 import com.intellij.codeInsight.navigation.NavigationGutterIconBuilder;
+import com.intellij.lang.properties.psi.Property;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiLiteralExpression;
 import com.intellij.psi.impl.source.tree.java.PsiJavaTokenImpl;
 import com.voc.ide.plugin.DevToolsIcons;
-import com.voc.ide.plugin.env.psi.EnvProperty;
-import com.voc.ide.plugin.env.psi.util.EnvUtil;
+import com.voc.ide.plugin.env.util.EnvUtil;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
@@ -32,14 +32,19 @@ public class EnvLineMarkerProvider extends RelatedItemLineMarkerProvider {
         // The literal expression must start with the Simple language literal expression
         PsiLiteralExpression literalExpression = (PsiLiteralExpression) element.getParent();
         String value = literalExpression.getValue() instanceof String ? (String) literalExpression.getValue() : null;
-        if ((value == null) || !value.startsWith(EnvAnnotator.ENV_PREFIX_STR + EnvAnnotator.ENV_SEPARATOR_STR)) {
+        if (value == null) {
             return;
         }
 
         // Get the Simple language property usage
         Project project = element.getProject();
-        String possibleProperties = value.substring(EnvAnnotator.ENV_PREFIX_STR.length() + EnvAnnotator.ENV_SEPARATOR_STR.length());
-        final List<EnvProperty> properties = EnvUtil.findProperties(project, possibleProperties);
+//        String possibleProperties = value.substring(EnvAnnotator.ENV_PREFIX_STR.length() + EnvAnnotator.ENV_SEPARATOR_STR.length());
+        //        List<Property>
+//        PsiTreeUtil.findChildOfType(PropertiesFile.class)
+
+        List<Property> properties = EnvUtil.findProperties2(project, value);
+
+//        final List<EnvProperty> properties = EnvUtil.findProperties(project, possibleProperties);
         if (properties.size() > 0) {
             // Add the property to a collection of line marker info
             NavigationGutterIconBuilder<PsiElement> builder =

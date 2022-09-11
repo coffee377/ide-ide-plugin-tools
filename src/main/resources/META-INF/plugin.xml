@@ -5,6 +5,7 @@
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.properties</depends>
     <depends optional="true" config-file="java.xml">com.intellij.java</depends>
     <depends optional="true" config-file="js.xml">JavaScript</depends>
     <depends optional="true" config-file="styles/css.xml">com.intellij.css</depends>
@@ -14,24 +15,18 @@
 
     <!--    <xi:include href="EnvExtensionPoints.xml"/>-->
     <extensionPoints>
-
-        <!-- 环境变量扩展点 -->
-        <!-- 通过 bean 进行扩展 -->
-        <extensionPoint name="env.vars.provider" beanClass="com.voc.ide.plugin.env.api.EnvExtensionPoint"
-                        dynamic="true">
-            <with attribute="implementationClass" implements="com.voc.ide.plugin.env.api.EnvVarsProvider"/>
-        </extensionPoint>
-
-        <!--        <extensionPoint name="env.vars.provider" interface="com.voc.ide.plugin.env.api.EnvVarsProvider" dynamic="true"/>-->
-
-        <!-- 通过接口进行扩展 -->
+        <extensionPoint name="env.vars.provider" interface="com.voc.ide.plugin.env.api.EnvironmentVariablesProvider"
+                        dynamic="true"/>
         <extensionPoint name="env.vars.usages.provider"
-                        interface="com.voc.ide.plugin.env.api.EnvVarsUsagesProvider" dynamic="true"/>
+                        interface="com.voc.ide.plugin.env.api.EnvironmentVariablesUsagesProvider" dynamic="true"/>
     </extensionPoints>
 
     <!-- 默认环境变量配置 -->
     <depends config-file="env/default.xml">com.intellij.modules.platform</depends>
     <depends optional="true" config-file="env/docker.xml">Docker</depends>
 
+    <extensions defaultExtensionNs="com.intellij">
+        <spellchecker.dictionary.runtimeDictionaryProvider implementation="com.voc.ide.dict.CloudDictionaryProvider"/>
+    </extensions>
 
 </idea-plugin>

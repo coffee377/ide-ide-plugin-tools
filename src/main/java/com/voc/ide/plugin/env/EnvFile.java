@@ -1,30 +1,12 @@
 package com.voc.ide.plugin.env;
 
-import com.intellij.extapi.psi.PsiFileBase;
-import com.intellij.openapi.fileTypes.FileType;
-import com.intellij.psi.FileViewProvider;
-import com.voc.ide.plugin.env.EnvFileType;
-import com.voc.ide.plugin.env.EnvLanguage;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.lang.properties.psi.PropertiesFile;
+import com.intellij.psi.PsiFile;
 
 /**
- * @author Wu Yujie
+ * @author WuYujie
  * @email coffee377@dingtalk.com
- * @time 2021/09/30 12:10
+ * @time 2022/09/12 18:22
  */
-public class EnvFile extends PsiFileBase {
-    protected EnvFile(@NotNull FileViewProvider viewProvider) {
-        super(viewProvider, EnvLanguage.INSTANCE);
-    }
-
-    @Override
-    public @NotNull FileType getFileType() {
-        return EnvFileType.INSTANCE;
-    }
-
-    @Override
-    public String toString() {
-        return "Env file";
-    }
-
+public interface EnvFile extends PsiFile, PropertiesFile {
 }

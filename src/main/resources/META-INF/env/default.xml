@@ -1,44 +1,47 @@
 <idea-plugin>
     <extensions defaultExtensionNs="com.voc.ide.plugin.tools">
-        <env.vars.provider implementationClass="com.voc.ide.plugin.env.extensions.EnvVariablesProvider"/>
+        <!--        <env.vars.provider implementationClass="com.voc.ide.plugin.env.extensions.EnvVariablesProvider"/>-->
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- 注册文件类型 -->
-        <fileType name="Env File" language="Env" patterns="*.env*"
+        <fileType name="Env" language="Properties" patterns="*.env;.env.*"
                   fieldName="INSTANCE"
                   implementationClass="com.voc.ide.plugin.env.EnvFileType"/>
-        <fileBasedIndex implementation="com.voc.ide.plugin.env.extensions.EnvFileIndex"/>
-        <!-- 语法解析 -->
-        <lang.parserDefinition language="Env" implementationClass="com.voc.ide.plugin.env.EnvParserDefinition"/>
-        <projectService serviceImplementation="com.voc.ide.plugin.env.EnvSettings"/>
-
-        <!-- 语法高亮 & 颜色配置 -->
-        <lang.syntaxHighlighterFactory language="Env"
-                                       implementationClass="com.voc.ide.plugin.env.highlight.EnvSyntaxHighlighterFactory"/>
-        <colorSettingsPage implementation="com.voc.ide.plugin.env.highlight.EnvColorSettingsPage"/>
-
-        <completion.contributor language="Env"
-                                implementationClass="com.voc.ide.plugin.env.extensions.EnvCompletionContributor"/>
-        <gotoSymbolContributor implementation="com.voc.ide.plugin.env.extensions.EnvGotoSymbolContributor"/>
-
-        <lang.formatter language="Env"
-                        implementationClass="com.voc.ide.plugin.env.extensions.EnvFormattingModelBuilder"/>
-
         <createFromTemplateHandler implementation="com.voc.ide.plugin.env.handler.EnvCreateFromTemplateHandler"/>
+        <!--        <fileBasedIndex implementation="com.voc.ide.plugin.env.extensions.EnvFileIndex"/>-->
+        <projectService serviceImplementation="com.voc.ide.plugin.env.EnvSettings"/>
+        <lang.documentationProvider id="env" language="Properties"
+                                    implementationClass="com.voc.ide.plugin.env.EnvDocumentationProvider"/>
+        <readerModeProvider implementation="com.voc.ide.plugin.env.CustomReaderModeProvider"/>
+        <!--        &lt;!&ndash; 语法高亮 & 颜色配置 &ndash;&gt;-->
+        <!--        <lang.syntaxHighlighterFactory language="Env"-->
+        <!--                                       implementationClass="com.voc.ide.plugin.env.highlight.EnvSyntaxHighlighterFactory"/>-->
+        <!--        <colorSettingsPage implementation="com.voc.ide.plugin.env.highlight.EnvColorSettingsPage"/>-->
 
-        <localInspection language="Env"
-                         groupName="Env"
-                         shortName="EnvDuplicateKeyInspection"
-                         displayName="Duplicate keys"
-                         enabledByDefault="true"
-                         level="WARNING"
-                         implementationClass="com.voc.ide.plugin.env.inspections.DuplicateKeyInspection"/>
+        <!--        <completion.contributor language="Env"-->
+        <!--                                implementationClass="com.voc.ide.plugin.env.extensions.EnvCompletionContributor"/>-->
+        <!--        <gotoSymbolContributor implementation="com.voc.ide.plugin.env.extensions.EnvGotoSymbolContributor"/>-->
+
+        <!--        <lang.formatter language="Env"-->
+        <!--                        implementationClass="com.voc.ide.plugin.env.extensions.EnvFormattingModelBuilder"/>-->
+
+
+        <!--        <localInspection language="Env"-->
+        <!--                         groupName="Env"-->
+        <!--                         shortName="EnvDuplicateKeyInspection"-->
+        <!--                         displayName="Duplicate keys"-->
+        <!--                         enabledByDefault="true"-->
+        <!--                         level="WARNING"-->
+        <!--                         implementationClass="com.voc.ide.plugin.env.inspections.DuplicateKeyInspection"/>-->
     </extensions>
 
     <actions>
         <action id="EnvFileAction" class="com.voc.ide.plugin.env.action.CreateEnvFileAction">
             <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>
+        </action>
+        <action id="test" class="com.voc.ide.plugin.env.action.TestAction" text="Test" description="Test action">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
         </action>
     </actions>
 </idea-plugin>

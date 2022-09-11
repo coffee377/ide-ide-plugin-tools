@@ -1,7 +1,7 @@
 package com.voc.ide.plugin.env;
 
 
-import com.voc.ide.plugin.env.psi.util.EnvFileName;
+import com.voc.ide.plugin.env.util.EnvFileName;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

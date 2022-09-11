@@ -28,8 +28,7 @@ public class EnvFileIndex extends FileBasedIndexExtension<String, String> {
         return fileContent -> {
             final Map<String, String> map = new HashMap<>();
             boolean storeValues = EnvSettings.getInstance(fileContent.getProject()).storeValues;
-//            EnvVarsProvider.EP_NAME.forEachExtensionSafe(provider -> {
-//
+            EnvVariablesProvider.EP_NAME.forEachExtensionSafe(provider -> {
 //                Collection<KeyValuePsiElement> elements = provider.getElements(fileContent.getPsiFile());
 //                elements.forEach(keyValueElement -> {
 //                    if (storeValues) {
@@ -38,7 +37,7 @@ public class EnvFileIndex extends FileBasedIndexExtension<String, String> {
 //                        map.put(keyValueElement.getKey(), "");
 //                    }
 //                });
-//            });
+            });
             return map;
         };
     }
@@ -60,16 +59,8 @@ public class EnvFileIndex extends FileBasedIndexExtension<String, String> {
 
     @Override
     public FileBasedIndex.@NotNull InputFilter getInputFilter() {
-        return file -> {
-
-//            return EnvVarsProvider.EP_NAME.getExtensionList()
-//                    .stream().anyMatch(provider -> provider.acceptFile(file).isAccepted());
-//            for (EnvironmentVariablesProvider provider : EnvironmentVariablesProviderUtil.PROVIDERS) {
-//                if (provider.acceptFile(file).isAccepted()) return true;
-//            }
-
-            return true;
-        };
+        return file -> EnvVariablesProvider.EP_NAME.getExtensionList()
+                .stream().anyMatch(provider -> provider.acceptFile(file).isAccepted());
     }
 
     @Override

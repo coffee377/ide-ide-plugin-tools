@@ -9,7 +9,7 @@ import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.search.PsiSearchHelper;
 import com.intellij.util.indexing.FileBasedIndex;
 import com.voc.ide.plugin.env.extensions.EnvFileIndex;
-import com.voc.ide.plugin.env.psi.util.EnvUtil;
+import com.voc.ide.plugin.env.util.ProviderUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -119,14 +119,15 @@ public class EnvironmentVariablesApi {
     }
 
     private static FileAcceptResult getFileAcceptResult(VirtualFile virtualFile) {
-//        for (EnvironmentVariablesProvider provider : EnvironmentVariablesProviderUtil.PROVIDERS) {
-//            FileAcceptResult fileAcceptResult = provider.acceptFile(virtualFile);
-//            if (!fileAcceptResult.isAccepted()) {
-//                continue;
-//            }
-//
-//            return fileAcceptResult;
-//        }
+
+        for (EnvironmentVariablesProvider provider : ProviderUtils.PROVIDERS) {
+            FileAcceptResult fileAcceptResult = provider.acceptFile(virtualFile);
+            if (!fileAcceptResult.isAccepted()) {
+                continue;
+            }
+
+            return fileAcceptResult;
+        }
 
         return FileAcceptResult.NOT_ACCEPTED;
     }

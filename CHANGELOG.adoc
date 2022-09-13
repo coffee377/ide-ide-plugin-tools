@@ -7,16 +7,22 @@ This document provides a high-level view of the changes introduced by release.
 [[releasenotes]]
 == Release notes
 
+// tag::compact[]
 === 0.0.6
 - Env syntax lexical optimization
 
 === 0.0.5
+
 - Fix incorrect name specified in <fileType>
 - Add null suppress for css declaration value
 
 === 0.0.3
+
 - Update the plugin description and comments to English
-- Support for Environment file(.env, \*.env, .env.*)
+- Support for Environment file( .env | \*.env | .env.*)
 
 === 0.0.1
+
 - support rpx or upx pixel unit for Mini Program
+// end::compact[]
+

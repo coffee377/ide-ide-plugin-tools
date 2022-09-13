@@ -1,28 +1,46 @@
 = DevTools
+:idprefix:
+:idseparator: -
+:prs-welcom:
 
-:repo-name: ide-plugin-tools
+ifndef::env-github[]
+:icons: font
+endif::[]
+ifdef::env-github[]
+:status:
+:caution-caption: :fire:
+:important-caption: :exclamation:
+:note-caption: :paperclip:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+:prs-welcom: image:https://img.shields.io/badge/PRs-welcome-brightgreen.svg[link=https://makeapullrequest.com]
+endif::[]
+
 :jetbrains: https://plugins.jetbrains.com
 :github: https://github.com
 :shields-io: https://img.shields.io
+:repo-name: ide-plugin-tools
 
-:jetbrains-logo:
 :jetbrains-plugin-id: 17704-devtools
 :jetbrains-plugin-link: {jetbrains}/plugin/{jetbrains-plugin-id}
 :jetbrains-plugin-version: {shields-io}/jetbrains/plugin/v/{jetbrains-plugin-id}
 :jetbrains-plugin-downloads: {shields-io}/jetbrains/plugin/d/{jetbrains-plugin-id}?label=jetbrains%20downloads
 
-:github-logo:
 :github-user: coffee377
-:github-workflows-badge: {github}/{github-user}/{repo-name}/workflows/Build/badge.svg?label=CI/CD
-:github-workflows-link: {github}/{github-user}/{repo-name}
+:repo-host: {github}
+:repo-namespace: {github-user}
+:repo-url: {repo-host}/{repo-namespace}/{repo-name}
+
+:github-workflows-badge: {repo-url}/workflows/Build/badge.svg?label=CI/CD
+:github-workflows-link: {repo-url}/actions
 :github-forks-badge: {shields-io}/github/forks/{github-user}/{repo-name}
-:github-forks-link:
+:github-forks-link: {repo-url}/fork
 :github-stars-badge: {shields-io}/github/stars/{github-user}/{repo-name}
-:github-stars-link:
+:github-stars-link: {repo-url}
 :github-watchers-badge: {shields-io}/github/watchers/{github-user}/{repo-name}
-:github-watchers-link:
+:github-watchers-link: {repo-url}
 :github-issues-closed-badge: {shields-io}/github/issues-closed/{github-user}/{repo-name}
-:github-issues: {github}/{github-user}/{repo-name}/issues
+:github-issues: {repo-url}/issues
 :github-issues-link: {github-issues}/issues?q=is%3Aopen
 :github-issues-pr-bdage: {shields-io}/github/issues-pr/{github-user}/{repo-name}?color=yellow
 :github-issues-pr: {github}/{github-user}/{repo-name}/pulls
@@ -31,9 +49,26 @@
 :github-downloads-link:
 :github-code-size-bdage: {shields-io}/github/languages/code-size/{github-user}/{repo-name}
 
-English | link:README-zh_CN.adoc[简体中文]
+ifdef::env-site[:url-project: link:]
+:url-docs: https://docs.asciidoctor.org
+:url-rel-file-base: link:
+:url-rel-tree-base: link:
+ifdef::env-site,env-jetbrains[]
+:url-rel-file-base: {repo-url}/blob/HEAD
+:url-rel-tree-base: {repo-url}/tree/HEAD
+endif::[]
+:url-changelog: {url-rel-file-base}/CHANGELOG.adoc
+:url-contribute: {url-rel-file-base}/CONTRIBUTING.adoc
+:url-license: {url-rel-file-base}LICENSE
+:url-tests: {url-rel-tree-base}test
+
+// 多语言说明文档
+ifndef::env-site,env-jetbrains[]
+English | {url-rel-file-base}README-zh_CN.adoc[简体中文]
+endif::[]
 
 // Plugin description start
+ifdef::status[]
 image:{jetbrains-plugin-version}[link={jetbrains-plugin-link}]
 image:{jetbrains-plugin-downloads}[link={jetbrains-plugin-link}]
 
@@ -45,6 +80,7 @@ image:{github-issues-closed-badge}[link={github-issues-link}]
 image:{github-issues-pr-bdage}[link={github-issues-pr-link}]
 image:{github-downloads-bdage}[link={github-downloads-link}]
 image:{github-code-size-bdage}[]
+endif::[]
 
 [[introduce]]
 == Introduction
@@ -56,7 +92,7 @@ A collection of common development tools for IntelliJ products.
 
 * Extensions for "Vue.js" plugin
 * support rpx or upx pixel unit for Mini Program
-* support for Environment configuration file(.env, \*.env, .env.*)
+* support for Environment configuration file(.env | \*.env | .env.*)
 
 [[install]]
 == Installation
@@ -75,10 +111,21 @@ A collection of common development tools for IntelliJ products.
 == Usage
 
 [[contributing]]
-== Contributing image:https://img.shields.io/badge/PRs-welcome-brightgreen.svg[link=https://makeapullrequest.com]
+== Contributing {prs-welcom}
 
 Any type of contribution is welcome, here are some examples of how you may contribute to this project 😃 ：
 
 - Use DevTools in your daily work.
 - Submit *{github-issues}[issues]* to report bugs or ask questions.
 - Propose *{github-issues-pr}[pull requests]* to improve our code.
+
+ifndef::env-site[]
+
+== Changelog
+
+ifeval::[{safe-mode-level} < 20]
+include::CHANGELOG.adoc[tag=compact]
+endif::[]
+
+Refer to the {url-rel-file-base}/CHANGELOG.adoc[CHANGELOG] for a complete list of changes in older releases.
+endif::[]

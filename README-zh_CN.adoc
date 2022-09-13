@@ -1,39 +1,75 @@
 = DevTools
+:idprefix:
+:idseparator: -
+:prs-welcom:
+:lang:
 
-:repo-name: ide-plugin-tools
+ifndef::env-github[]
+:icons: font
+endif::[]
+ifdef::env-github[]
+:status:
+:caution-caption: :fire:
+:important-caption: :exclamation:
+:note-caption: :paperclip:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+:prs-welcom: image:https://img.shields.io/badge/PRs-welcome-brightgreen.svg[link=https://makeapullrequest.com]
+endif::[]
+
 :jetbrains: https://plugins.jetbrains.com
 :github: https://github.com
 :shields-io: https://img.shields.io
+:repo-name: ide-plugin-tools
 
-:jetbrains-logo:
 :jetbrains-plugin-id: 17704-devtools
 :jetbrains-plugin-link: {jetbrains}/plugin/{jetbrains-plugin-id}
 :jetbrains-plugin-version: {shields-io}/jetbrains/plugin/v/{jetbrains-plugin-id}
 :jetbrains-plugin-downloads: {shields-io}/jetbrains/plugin/d/{jetbrains-plugin-id}?label=jetbrains%20downloads
 
-:github-logo:
 :github-user: coffee377
-:github-workflows-badge: {github}/{github-user}/{repo-name}/workflows/Build/badge.svg?label=CI/CD
-:github-workflows-link: {github}/{github-user}/{repo-name}
+:repo-host: {github}
+:repo-namespace: {github-user}
+:repo-url: {repo-host}/{repo-namespace}/{repo-name}
+
+:github-workflows-badge: {repo-url}/workflows/Build/badge.svg?label=CI/CD
+:github-workflows-link: {repo-url}/actions
 :github-forks-badge: {shields-io}/github/forks/{github-user}/{repo-name}
-:github-forks-link:
+:github-forks-link: {repo-url}/fork
 :github-stars-badge: {shields-io}/github/stars/{github-user}/{repo-name}
-:github-stars-link:
+:github-stars-link: {repo-url}
 :github-watchers-badge: {shields-io}/github/watchers/{github-user}/{repo-name}
-:github-watchers-link:
+:github-watchers-link: {repo-url}
 :github-issues-closed-badge: {shields-io}/github/issues-closed/{github-user}/{repo-name}
-:github-issues: {github}/{github-user}/{repo-name}/issues
+:github-issues: {repo-url}/issues
 :github-issues-link: {github-issues}/issues?q=is%3Aopen
 :github-issues-pr-bdage: {shields-io}/github/issues-pr/{github-user}/{repo-name}?color=yellow
-:github-issues-pr: {github}/{github-user}/{repo-name}/pulls
+:github-issues-pr: {repo-url}/pulls
 :github-issues-pr-link: {github-issues-pr}?q=is%3Apr+is%3Aopen+
 :github-downloads-bdage: {shields-io}/github/downloads/{github-user}/{repo-name}/total?label=github%20downloads
 :github-downloads-link:
 :github-code-size-bdage: {shields-io}/github/languages/code-size/{github-user}/{repo-name}
 
-link:README.adoc[English] | 简体中文
+ifdef::env-site[:url-project: link:]
+:url-docs: https://docs.asciidoctor.org
+:url-rel-file-base: link:
+:url-rel-tree-base: link:
+ifdef::env-site,env-jetbrains[]
+:url-rel-file-base: {repo-url}/blob/HEAD
+:url-rel-tree-base: {repo-url}/tree/HEAD
+endif::[]
+:url-changelog: {url-rel-file-base}/CHANGELOG.adoc
+:url-contribute: {url-rel-file-base}/CONTRIBUTING.adoc
+:url-license: {url-rel-file-base}LICENSE
+:url-tests: {url-rel-tree-base}test
+
+// 多语言说明文档
+ifndef::env-site,env-jetbrains[]
+{url-rel-file-base}README.adoc[English] | 简体中文
+endif::[]
 
 // Plugin description start
+ifdef::status[]
 image:{jetbrains-plugin-version}[link={jetbrains-plugin-link}]
 image:{jetbrains-plugin-downloads}[link={jetbrains-plugin-link}]
 
@@ -45,6 +81,7 @@ image:{github-issues-closed-badge}[link={github-issues-link}]
 image:{github-issues-pr-bdage}[link={github-issues-pr-link}]
 image:{github-downloads-bdage}[link={github-downloads-link}]
 image:{github-code-size-bdage}[]
+endif::[]
 
 [[introduce]]
 == 简介
@@ -56,7 +93,7 @@ IntelliJ 系列产品的常用开发工具插件集合
 
 * “Vue.js”插件的扩展功能
 * 支持小程序像素单位(rpx 或 upx)
-* 支持环境配置文件(.env, *.env, .env.*)
+* 支持环境配置文件(.env | \*.env | .env.*)
 
 [[install]]
 == 安装
@@ -82,3 +119,15 @@ IntelliJ 系列产品的常用开发工具插件集合
 - 在日常工作中使用 DevTools
 - 提交 *{github-issues}[问题]* 以报告错误或提出问题
 - 提出 *{github-issues-pr}[拉取请求]* 以改进我们的代码
+
+
+ifndef::env-site[]
+
+== 更新日志
+
+ifeval::[{safe-mode-level} < 20]
+include::CHANGELOG-zh_CN.adoc[tag=compact]
+endif::[]
+
+有关历史版本详细更新信息，请参阅 {url-rel-file-base}/CHANGELOG-zh_CN.adoc[CHANGELOG]
+endif::[]

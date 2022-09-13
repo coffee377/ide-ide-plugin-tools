@@ -17,6 +17,9 @@ plugins {
     id("org.jetbrains.qodana") version "0.1.13"
 
     id("org.asciidoctor.jvm.convert") version "3.3.2"
+    id("org.asciidoctor.jvm.pdf") version "3.3.2"
+    id("org.asciidoctor.jvm.epub") version "3.3.2"
+
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
 }
 
@@ -38,7 +41,7 @@ dependencyManagement {
 }
 
 dependencies {
-    compileOnly("org.jsoup:jsoup:1.14.3")
+    compileOnly("org.jsoup:jsoup:1.15.3")
     testImplementation(platform("org.junit:junit-bom:5.9.0"))
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -84,6 +87,17 @@ qodana {
     showReport.set(System.getenv("QODANA_SHOW_REPORT")?.toBoolean() ?: false)
 }
 
+asciidoctorj {
+    modules {
+        diagram.use()
+    }
+//    attributesForLang(mapOf("A" to "AA", "B" to "BB"), "es")
+    attributes(
+        mapOf(
+            "env-jetbrains" to "",
+        )
+    )
+}
 
 tasks {
     wrapper {
@@ -109,17 +123,14 @@ tasks {
         doFirst {
             file("build/docs").deleteRecursively()
         }
+
         setSourceDir(file("."))
-        sources {
-            include("*.adoc")
-        }
         setOutputDir(file("build/docs"))
-//        languages = kotlin.arrayOf()
-        asciidoctorj {
-//    attributesForLang(d:f, "")
-            attribute("env-jetbrains", "")
+        sources {
+            include("README*.adoc", "CHANGELOG*.adoc")
         }
 
+//        languages("en", "es", "zh")
     }
 
     build {
@@ -139,7 +150,6 @@ tasks {
     }
 
     patchPluginXml {
-        //        setDependsOn(listOf(asciidoctor))
         version.set(properties("pluginVersion"))
         pluginId.set(properties("pluginGroup"))
         sinceBuild.set(properties("pluginSinceBuild"))

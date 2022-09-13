@@ -1,6 +1,5 @@
 import org.jetbrains.changelog.date
 import org.jetbrains.changelog.markdownToHTML
-import org.jetbrains.kotlin.utils.addToStdlib.ifTrue
 import java.util.stream.Collectors
 
 fun properties(key: String) = project.findProperty(key).toString()
@@ -85,6 +84,7 @@ qodana {
     showReport.set(System.getenv("QODANA_SHOW_REPORT")?.toBoolean() ?: false)
 }
 
+
 tasks {
     wrapper {
         /* gradle wrapper 版本 */
@@ -114,6 +114,12 @@ tasks {
             include("*.adoc")
         }
         setOutputDir(file("build/docs"))
+//        languages = kotlin.arrayOf()
+        asciidoctorj {
+//    attributesForLang(d:f, "")
+            attribute("env-jetbrains", "")
+        }
+
     }
 
     build {

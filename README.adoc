@@ -54,8 +54,8 @@ ifdef::env-site[:url-project: link:]
 :url-rel-file-base: link:
 :url-rel-tree-base: link:
 ifdef::env-site,env-jetbrains[]
-:url-rel-file-base: {repo-url}/blob/HEAD
-:url-rel-tree-base: {repo-url}/tree/HEAD
+:url-rel-file-base: {repo-url}/blob/HEAD/
+:url-rel-tree-base: {repo-url}/tree/HEAD/
 endif::[]
 :url-changelog: {url-rel-file-base}/CHANGELOG.adoc
 :url-contribute: {url-rel-file-base}/CONTRIBUTING.adoc
@@ -63,9 +63,7 @@ endif::[]
 :url-tests: {url-rel-tree-base}test
 
 // 多语言说明文档
-ifndef::env-site,env-jetbrains[]
 English | {url-rel-file-base}README-zh_CN.adoc[简体中文]
-endif::[]
 
 // Plugin description start
 ifdef::status[]

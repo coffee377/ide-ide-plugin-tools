@@ -55,8 +55,8 @@ ifdef::env-site[:url-project: link:]
 :url-rel-file-base: link:
 :url-rel-tree-base: link:
 ifdef::env-site,env-jetbrains[]
-:url-rel-file-base: {repo-url}/blob/HEAD
-:url-rel-tree-base: {repo-url}/tree/HEAD
+:url-rel-file-base: {repo-url}/blob/HEAD/
+:url-rel-tree-base: {repo-url}/tree/HEAD/
 endif::[]
 :url-changelog: {url-rel-file-base}/CHANGELOG.adoc
 :url-contribute: {url-rel-file-base}/CONTRIBUTING.adoc
@@ -64,9 +64,7 @@ endif::[]
 :url-tests: {url-rel-tree-base}test
 
 // 多语言说明文档
-ifndef::env-site,env-jetbrains[]
 {url-rel-file-base}README.adoc[English] | 简体中文
-endif::[]
 
 // Plugin description start
 ifdef::status[]
@@ -112,7 +110,7 @@ IntelliJ 系列产品的常用开发工具插件集合
 == 用法
 
 [[contributing]]
-== 贡献 image:https://img.shields.io/badge/PRs-welcome-brightgreen.svg[link=https://makeapullrequest.com]
+== 贡献 {prs-welcom}
 
 欢迎任何类型的贡献，这里有一些你可以如何为这个项目做出贡献的例子😃：
 
